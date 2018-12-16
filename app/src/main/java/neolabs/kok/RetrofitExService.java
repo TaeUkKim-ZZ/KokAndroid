@@ -15,5 +15,8 @@ public interface RetrofitExService {
     @GET("addpick")
     Call<Data> addPick(@Query("latitude") String latitude, @Query("longitude") String longitude, @Query("userauthid") String userauthid, @Query("message") String message);
 
+    @GET("getpicknearby")
+    Call<Data> getPick(@Query("latitude") String latitude, @Query("longitude") String longitude);
+
     //출처: http://falinrush.tistory.com/5 [형필 개발일지]
 }

@@ -1,6 +1,5 @@
 package neolabs.kok;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
