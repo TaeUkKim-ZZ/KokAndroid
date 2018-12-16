@@ -21,6 +21,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class LoginActivity extends AppCompatActivity {
 
     Button login;
@@ -67,6 +72,44 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void logintoserver(String email, String password) {
+        Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        RetrofitExService service = client.create(RetrofitExService.class);
+        Call<Data> call = service.signinUserInfo(email, password);
+        call.enqueue(new Callback<Data>() {
+            @Override
+            public void onResponse(Call<Data> call, retrofit2.Response<Data> response) {
+                switch (response.code()) {
+                    case 200:
+                        Data body = response.body();
+
+                        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("useremail", body.getEmail());
+                        editor.putString("userauthid", body.getId());
+                        editor.putString("gender", body.getGender());
+                        editor.putString("nickname", body.getNickname());
+                        editor.putString("introduce", body.getIntroduce());
+                        editor.apply();
+
+                        Toast.makeText(LoginActivity.this, "로그인 완료", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                    case 409:
+                        Toast.makeText(LoginActivity.this, "존재하지 않은 계정입니다.", Toast.LENGTH_SHORT).show();
+                    default:
+                        Log.e("asdf", response.code() + "");
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Data> call, Throwable t) {
+                Log.d("checkonthe", "error");
+            }
+        });
 
     }
 }
