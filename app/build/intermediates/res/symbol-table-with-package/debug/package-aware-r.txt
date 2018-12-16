@@ -1063,7 +1063,6 @@ id barrier
 id beginning
 id blocking
 id bottom
-id button2
 id buttonPanel
 id center
 id center_horizontal
@@ -1090,8 +1089,9 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
-id editText
+id editText2
 id edit_query
+id editbutton
 id email_edittext
 id email_edittext2
 id email_login_button
@@ -1190,6 +1190,7 @@ id search_src_text
 id search_voice_btn
 id select_dialog_listview
 id selected
+id sendbutton2
 id shortcut
 id showCustom
 id showHome
@@ -1297,6 +1298,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_kok
+layout activity_kok_comment
 layout activity_login
 layout activity_main
 layout activity_profile

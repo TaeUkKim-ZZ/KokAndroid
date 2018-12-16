@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".AddKokActivity"></activity>
+        <activity android:name=".AddKokActivity" />
+        <activity android:name=".KokCommentActivity"></activity>
     </application>
 
 </manifest>
