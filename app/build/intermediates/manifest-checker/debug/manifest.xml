@@ -20,8 +20,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="neolabs.kok.LoginActivity" >
-        </activity>
+        <activity android:name="neolabs.kok.LoginActivity" />
         <activity android:name="neolabs.kok.SignupActivity" />
         <activity android:name="neolabs.kok.MainActivity" />
         <activity android:name="neolabs.kok.SplashActivity" >
@@ -31,6 +30,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="neolabs.kok.ProfileActivity" />
+        <activity android:name="neolabs.kok.AddKokActivity" />
 
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"

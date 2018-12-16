@@ -23,6 +23,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         putusername = findViewById(R.id.textView);
         putintroduce = findViewById(R.id.textView3);
+        logout = findViewById(R.id.logoutbutton);
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         usernickname = pref.getString("nickname", "");

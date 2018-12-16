@@ -87,7 +87,7 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/kimtaeuk/.gr
 	android:theme
 		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:13:9-40
 activity#neolabs.kok.LoginActivity
-ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:14:9-60
+ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:14:9-51
 	android:name
 		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:14:19-48
 activity#neolabs.kok.SignupActivity
@@ -99,23 +99,27 @@ ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifes
 	android:name
 		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:16:19-47
 activity#neolabs.kok.SplashActivity
-ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:17:9-24:20
+ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:17:9-23:20
 	android:name
-		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:18:13-43
+		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:17:19-49
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:19:13-23:29
+ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:18:13-22:29
 action#android.intent.action.MAIN
-ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:20:17-69
+ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:19:17-69
 	android:name
-		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:20:25-66
+		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:19:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:22:17-77
+ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:21:17-77
 	android:name
-		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:22:27-74
+		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:21:27-74
 activity#neolabs.kok.ProfileActivity
-ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:25:9-62
+ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:24:9-53
 	android:name
-		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:25:19-50
+		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:24:19-50
+activity#neolabs.kok.AddKokActivity
+ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:25:9-61
+	android:name
+		ADDED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml:25:19-49
 uses-sdk
 INJECTED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/AndroidManifest.xml
