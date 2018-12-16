@@ -88,12 +88,6 @@ public class SignupActivity extends AppCompatActivity {
                 switch (response.code()) {
                     case 200:
                         Data body = response.body();
-                        //Log.d("checkonthe", "response.raw :"+response.raw());
-                        /*Log.d("data.getUserId()", body.getEmail() + "");
-                        Log.d("data.getId()", body.getId() + "");
-                        Log.d("data.getTitle()", body.getGender());
-                        Log.d("data.getBody()", body.getIntroduce());
-                        Log.d("data", body.getNickname());*/
 
                         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                         SharedPreferences.Editor editor = pref.edit();
@@ -116,8 +110,6 @@ public class SignupActivity extends AppCompatActivity {
                         Log.e("asdf", response.code() + "");
                         break;
                 }
-                //if(response.isSuccessful()){
-                //}
             }
 
             @Override
