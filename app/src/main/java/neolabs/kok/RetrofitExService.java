@@ -15,7 +15,7 @@ public interface RetrofitExService {
     Call<Data> signinUserInfo(@Query("email") String email, @Query("password") String password);
 
     @GET("addpick")
-    Call<Data> addPick(@Query("latitude") String latitude, @Query("longitude") String longitude, @Query("userauthid") String userauthid, @Query("message") String message);
+    Call<Data> addPick(@Query("latitude") String latitude, @Query("longitude") String longitude, @Query("userauthid") String userauthid, @Query("message") String message, @Query("usernickname") String usernickname);
 
     @GET("getpicknearby")
     Call<List<KokData>> getPick(@Query("latitude") String latitude, @Query("longitude") String longitude);

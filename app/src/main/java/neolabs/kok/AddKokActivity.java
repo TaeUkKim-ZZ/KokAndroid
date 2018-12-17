@@ -1,16 +1,21 @@
 package neolabs.kok;
 
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.security.MessageDigest;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +28,7 @@ public class AddKokActivity extends AppCompatActivity {
     Button sendmessage;
     String gomessage;
     String userauthid;
+    String usernickname;
 
     private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
     private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
@@ -42,6 +48,8 @@ public class AddKokActivity extends AppCompatActivity {
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         userauthid = pref.getString("userauthid", null);
+        usernickname = pref.getString("nickname", null);
+
 
         sendmessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +72,7 @@ public class AddKokActivity extends AppCompatActivity {
                     Log.d("latitude", String.format("%f", latitude));
                     Log.d("longitude", String.format("%f", longitude));
 
-                    sendreqeust(String.format("%f", latitude), String.format("%f", longitude), userauthid, gomessage);
+                    sendreqeust(String.format("%f", latitude), String.format("%f", longitude), userauthid, gomessage, usernickname);
                 } else {
                     // GPS 를 사용할수 없으므로
                     gps.showSettingsAlert();
@@ -111,11 +119,11 @@ public class AddKokActivity extends AppCompatActivity {
         }
     }
 
-    public void sendreqeust(String latitude, String longitude, String userauthid, String message) {
+    public void sendreqeust(String latitude, String longitude, String userauthid, String message, String usernickname) {
         //리퀘스트를 보낸다아아아아아아아
         Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitExService service = client.create(RetrofitExService.class);
-        Call<Data> call = service.addPick(latitude, longitude, userauthid, message);
+        Call<Data> call = service.addPick(latitude, longitude, userauthid, message, usernickname);
         call.enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, retrofit2.Response<Data> response) {

@@ -21,6 +21,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import net.daum.mf.map.api.MapPOIItem;
+import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, MapView.MapViewEventListener, MapView.POIItemEventListener {
 
     FloatingActionButton gotoprofile;
     FloatingActionButton addkok;
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     String[] userauthidarray = new String[99999];
+    String[] kokidarray = new String[99999];
 
     private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
     private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
@@ -50,34 +55,46 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private boolean isPermission = false;
 
     private GPSInfo gps;
+    MapView mapView;
+    ViewGroup mapViewContainer;
+    MapPoint mapPoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
-                android.R.color.holo_green_dark,
-                android.R.color.holo_orange_dark,
-                android.R.color.holo_blue_dark);
-        mSwipeRefreshLayout.setRefreshing(false);
+        if(!isPermission){
+            callPermission();
+        }
 
-        gotoprofile = (FloatingActionButton) findViewById(R.id.myprofile);
-        addkok = (FloatingActionButton) findViewById(R.id.addkok);
+        gps = new GPSInfo(MainActivity.this);
 
-        recyclerview = findViewById(R.id.mainrecyclerView);
-        recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        // GPS 사용유무 가져오기
+        if (gps.isGetLocation()) {
+            //GPSInfo를 통해 알아낸 위도값과 경도값
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
 
-        getgpsdata();
+            Log.d("latitude", String.format("%f", latitude));
+            Log.d("longitude", String.format("%f", longitude));
 
-        //여기에 아이템 추가.... 위치 얻어서....?
+            mapView = new MapView(this);
+            mapView.setDaumMapApiKey("beb4ae99eb57de8785135bb2c5484f33");
+            mapViewContainer = (ViewGroup) findViewById(R.id.mapView);
+            mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude);
+            mapView.setMapCenterPoint(mapPoint, true);
+            //true면 앱 실행 시 애니메이션 효과가 나오고 false면 애니메이션이 나오지않음.
+            mapViewContainer.addView(mapView);
 
-        //items.add(new KokItem("test"));
+            getkokfromserver(String.format("%f", latitude), String.format("%f", longitude));
+        } else {
+            // GPS 를 사용할수 없으므로
+            gps.showSettingsAlert();
+        }
 
-        mAdapter = new RecyclerAdapter(items);
-        recyclerview.setAdapter(mAdapter);
+        gotoprofile = findViewById(R.id.myprofile);
+        addkok = findViewById(R.id.addkok);
 
         gotoprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,43 +111,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 startActivity(intent);
             }
         });
-
-        recyclerview.addOnItemTouchListener(
-                new RecyclerItemClickListener(getApplicationContext(), recyclerview, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Toast.makeText(getApplicationContext(),position+"번 째 아이템 클릭",Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onLongItemClick(View view, int position) {
-                        Toast.makeText(getApplicationContext(),position+"번 째 아이템 롱 클릭",Toast.LENGTH_SHORT).show();
-                        //삭제 여부를 물어본후 삭제한다.
-                    }
-                }));
     }
 
     public void getgpsdata() {
-        if(!isPermission){
-            callPermission();
-        }
-
-        gps = new GPSInfo(MainActivity.this);
-
-        // GPS 사용유무 가져오기
-        if (gps.isGetLocation()) {
-            //GPSInfo를 통해 알아낸 위도값과 경도값
-            double latitude = gps.getLatitude();
-            double longitude = gps.getLongitude();
-
-            Log.d("latitude", String.format("%f", latitude));
-            Log.d("longitude", String.format("%f", longitude));
-
-            getkokfromserver(String.format("%f", latitude), String.format("%f", longitude));
-        } else {
-            // GPS 를 사용할수 없으므로
-            gps.showSettingsAlert();
-        }
     }
 
     public void getkokfromserver (String latitude, String longitude) {
@@ -147,10 +130,23 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                         for(int i = 0; i < response.body().size(); i++) {
                             items.add(new KokItem(response.body().get(i).getMessage()));
                             userauthidarray[i] = response.body().get(i).getUserauthid();
+                            kokidarray[i] = response.body().get(i).getId();
+
+                            MapPOIItem marker = new MapPOIItem();
+                            List<Double> point = response.body().get(i).getLocation().getCoordinates();
+                            marker.setItemName(response.body().get(i).getUsernickname() + "의 Kok!");
+                            marker.setTag(i);
+                            marker.setMapPoint(MapPoint.mapPointWithGeoCoord(point.get(1), point.get(0)));
+                            marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
+                            marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+                            mapView.addPOIItem(marker);
+
+                            Log.d("tag", String.format("%f", point.get(0)));
+                            point.clear();
                             //Log.d("softtag", response.body().get(i).getMessage());
                         }
-                        mAdapter.notifyDataSetChanged();
-                        mSwipeRefreshLayout.setRefreshing(false);
+                        //mAdapter.notifyDataSetChanged();
+                        //mSwipeRefreshLayout.setRefreshing(false);
                         //출처: http://jekalmin.tistory.com/entry/Gson을-이용한-json을-객체에-담기 [jekalmin의 블로그]
                         //Log.d("softtag", body.toString());
                         break;
@@ -172,8 +168,74 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public void onRefresh() {
         items.clear();
-        mAdapter.notifyDataSetChanged();
+        //mAdapter.notifyDataSetChanged();
         getgpsdata();
+    }
+
+    @Override
+    public void onMapViewInitialized(MapView mapView) {
+
+    }
+
+    @Override
+    public void onMapViewCenterPointMoved(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewZoomLevelChanged(MapView mapView, int i) {
+
+    }
+
+    @Override
+    public void onMapViewSingleTapped(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewDoubleTapped(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewLongPressed(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewDragStarted(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewDragEnded(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
+        Log.d("selected!", "tag");
+        Toast.makeText(this, Integer.toString(mapPOIItem.getTag()), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
+
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
+
+    }
+
+    @Override
+    public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
+
     }
 
     public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

@@ -1143,8 +1143,8 @@ id line3
 id listMode
 id list_item
 id logoutbutton
-id mainrecyclerView
 id male
+id mapView
 id masked
 id message
 id middle
@@ -1226,7 +1226,6 @@ id start
 id stretch
 id submenuarrow
 id submit_area
-id swipe_layout
 id swipe_layout2
 id tabMode
 id tag_transition_group
@@ -1317,7 +1316,6 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_kok
 layout activity_edit_profile
-layout activity_kok
 layout activity_kok_comment
 layout activity_login
 layout activity_main

@@ -18,6 +18,9 @@ public class KokData {
     @SerializedName("userauthid")
     @Expose
     private String userauthid;
+    @SerializedName("usernickname")
+    @Expose
+    private String usernickname;
     @SerializedName("message")
     @Expose
     private String message;
@@ -55,6 +58,14 @@ public class KokData {
 
     public void setUserauthid(String userauthid) {
         this.userauthid = userauthid;
+    }
+
+    public String getUsernickname() {
+        return usernickname;
+    }
+
+    public void setUsernickname(String usernickname) {
+        this.usernickname = usernickname;
     }
 
     public String getMessage() {

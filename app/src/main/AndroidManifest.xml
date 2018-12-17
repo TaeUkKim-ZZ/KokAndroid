@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <meta-data android:name="com.kakao.sdk.AppKey" android:value="beb4ae99eb57de8785135bb2c5484f33"/>
 
     <application
         android:allowBackup="true"
