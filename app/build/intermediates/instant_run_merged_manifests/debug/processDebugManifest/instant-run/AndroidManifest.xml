@@ -36,6 +36,7 @@
         <activity android:name="neolabs.kok.ProfileActivity" />
         <activity android:name="neolabs.kok.AddKokActivity" />
         <activity android:name="neolabs.kok.KokCommentActivity" />
+        <activity android:name="neolabs.kok.EditProfileActivity" />
 
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"

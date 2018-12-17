@@ -26,7 +26,8 @@
         </activity>
         <activity android:name=".ProfileActivity" />
         <activity android:name=".AddKokActivity" />
-        <activity android:name=".KokCommentActivity"></activity>
+        <activity android:name=".KokCommentActivity" />
+        <activity android:name=".EditProfileActivity"></activity>
     </application>
 
 </manifest>

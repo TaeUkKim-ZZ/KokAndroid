@@ -1064,6 +1064,8 @@ id beginning
 id blocking
 id bottom
 id buttonPanel
+id cardview
+id cardview2
 id center
 id center_horizontal
 id center_vertical
@@ -1073,6 +1075,8 @@ id chronometer
 id clip_horizontal
 id clip_vertical
 id collapseActionView
+id commentrecyclerView
+id commentsend
 id container
 id content
 id contentPanel
@@ -1081,6 +1085,7 @@ id custom
 id customPanel
 id decor_content_parent
 id default_activity_button
+id deletebutton
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -1092,6 +1097,7 @@ id disableHome
 id editText2
 id edit_query
 id editbutton
+id editcommenttext
 id email_edittext
 id email_edittext2
 id email_login_button
@@ -1103,6 +1109,7 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id feelimage2
 id female
 id fill
 id fill_horizontal
@@ -1124,6 +1131,7 @@ id ifRoom
 id image
 id image_logo
 id info
+id introduce3
 id invisible
 id italic
 id item_touch_helper_previous_elevation
@@ -1135,6 +1143,7 @@ id line3
 id listMode
 id list_item
 id logoutbutton
+id mainrecyclerView
 id male
 id masked
 id message
@@ -1144,6 +1153,7 @@ id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
 id myprofile
+id myrecyclerView
 id navigation_header_container
 id never
 id none
@@ -1161,7 +1171,9 @@ id password_edittext
 id password_edittext2
 id percent
 id pin
+id profile2
 id profile_image
+id profile_image2
 id progress_bar
 id progress_circular
 id progress_horizontal
@@ -1214,6 +1226,8 @@ id start
 id stretch
 id submenuarrow
 id submit_area
+id swipe_layout
+id swipe_layout2
 id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
@@ -1224,13 +1238,16 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView
+id textView2
 id textView3
+id textView4
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
 id textinput_helper_text
 id time
 id title
+id title2
 id titleDividerNoCustom
 id title_template
 id top
@@ -1245,6 +1262,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id username3
 id view_offset_helper
 id visible
 id withText
@@ -1298,12 +1316,15 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_kok
+layout activity_edit_profile
+layout activity_kok
 layout activity_kok_comment
 layout activity_login
 layout activity_main
 layout activity_profile
 layout activity_signup
 layout activity_splash
+layout commentlist
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -1321,6 +1342,7 @@ layout design_text_input_password_icon
 layout listlayout
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
+layout mylist
 layout notification_action
 layout notification_action_tombstone
 layout notification_template_custom_big

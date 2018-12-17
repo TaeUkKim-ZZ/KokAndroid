@@ -52,6 +52,10 @@
         "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/5496d12dbf46160327fa3e92730ddee7/res/drawable-xxhdpi-v4/abc_ic_star_half_black_48dp.png"
     },
     {
+        "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/res/merged/debug/layout_activity_kok.xml.flat",
+        "source": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/res/layout/activity_kok.xml"
+    },
+    {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/res/merged/debug/drawable_abc_seekbar_tick_mark_material.xml.flat",
         "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/5496d12dbf46160327fa3e92730ddee7/res/drawable/abc_seekbar_tick_mark_material.xml"
     },
@@ -258,6 +262,10 @@
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/res/merged/debug/drawable_design_snackbar_background.xml.flat",
         "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/f959e48bedb8ae63124e43bf889ee30d/res/drawable/design_snackbar_background.xml"
+    },
+    {
+        "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/res/merged/debug/layout_mylist.xml.flat",
+        "source": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/res/layout/mylist.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
@@ -712,6 +720,10 @@
         "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/5496d12dbf46160327fa3e92730ddee7/res/drawable-ldrtl-xxhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
+        "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/res/merged/debug/layout_activity_edit_profile.xml.flat",
+        "source": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/res/layout/activity_edit_profile.xml"
+    },
+    {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
         "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/5496d12dbf46160327fa3e92730ddee7/res/drawable-hdpi-v4/abc_textfield_activated_mtrl_alpha.9.png"
     },
@@ -934,6 +946,10 @@
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
         "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/5496d12dbf46160327fa3e92730ddee7/res/drawable-xxhdpi-v4/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/res/merged/debug/layout_commentlist.xml.flat",
+        "source": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/src/main/res/layout/commentlist.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",

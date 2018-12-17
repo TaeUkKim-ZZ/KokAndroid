@@ -212,7 +212,6 @@ public class GPSInfo extends Service implements LocationListener{
 
         // 대화창 배경 색 설정
         alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,62,79,92)));
-
         alert.show();
     }
 }
