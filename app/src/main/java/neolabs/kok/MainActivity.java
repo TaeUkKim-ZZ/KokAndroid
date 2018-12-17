@@ -1,7 +1,6 @@
 package neolabs.kok;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -10,23 +9,19 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
+import net.daum.mf.map.api.CalloutBalloonAdapter;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,14 +34,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     FloatingActionButton gotoprofile;
     FloatingActionButton addkok;
 
-    RecyclerView recyclerview;
-    RecyclerAdapter mAdapter;
     List<KokItem> items = new ArrayList<>();
-
-    SwipeRefreshLayout mSwipeRefreshLayout;
 
     String[] userauthidarray = new String[99999];
     String[] kokidarray = new String[99999];
+    String[] kokcomment = new String[99999];
 
     private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
     private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
@@ -84,8 +76,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             mapViewContainer = (ViewGroup) findViewById(R.id.mapView);
             mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude);
             mapView.setMapCenterPoint(mapPoint, true);
-            //true면 앱 실행 시 애니메이션 효과가 나오고 false면 애니메이션이 나오지않음.
             mapViewContainer.addView(mapView);
+            mapView.setPOIItemEventListener(this);
+            mapView.setCalloutBalloonAdapter(new CustomCalloutBalloonAdapter());
 
             getkokfromserver(String.format("%f", latitude), String.format("%f", longitude));
         } else {
@@ -113,9 +106,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         });
     }
 
-    public void getgpsdata() {
-    }
-
     public void getkokfromserver (String latitude, String longitude) {
         Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitExService service = client.create(RetrofitExService.class);
@@ -131,24 +121,29 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                             items.add(new KokItem(response.body().get(i).getMessage()));
                             userauthidarray[i] = response.body().get(i).getUserauthid();
                             kokidarray[i] = response.body().get(i).getId();
+                            kokcomment[i] = response.body().get(i).getMessage();
 
                             MapPOIItem marker = new MapPOIItem();
                             List<Double> point = response.body().get(i).getLocation().getCoordinates();
                             marker.setItemName(response.body().get(i).getUsernickname() + "의 Kok!");
                             marker.setTag(i);
                             marker.setMapPoint(MapPoint.mapPointWithGeoCoord(point.get(1), point.get(0)));
-                            marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
-                            marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+
+                            marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
+
+                            marker.setCustomImageResourceId(R.drawable.custom_marker_red);
+                            marker.setCustomImageAutoscale(false);
+                            marker.setCustomImageAnchor(0.5f, 1.0f);
+                            //marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
                             mapView.addPOIItem(marker);
+                            //mapView.selectPOIItem(marker, true);
+                            //mapView.setMapCenterPoint(marker, false);
+
 
                             Log.d("tag", String.format("%f", point.get(0)));
                             point.clear();
-                            //Log.d("softtag", response.body().get(i).getMessage());
                         }
-                        //mAdapter.notifyDataSetChanged();
-                        //mSwipeRefreshLayout.setRefreshing(false);
                         //출처: http://jekalmin.tistory.com/entry/Gson을-이용한-json을-객체에-담기 [jekalmin의 블로그]
-                        //Log.d("softtag", body.toString());
                         break;
                     case 409:
                         Toast.makeText(MainActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
@@ -167,9 +162,28 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onRefresh() {
-        items.clear();
-        //mAdapter.notifyDataSetChanged();
-        getgpsdata();
+
+    }
+
+    class CustomCalloutBalloonAdapter implements CalloutBalloonAdapter {
+        private final View mCalloutBalloon;
+
+        public CustomCalloutBalloonAdapter() {
+            mCalloutBalloon = getLayoutInflater().inflate(R.layout.customtag, null);
+        }
+
+        @Override
+        public View getCalloutBalloon(MapPOIItem poiItem) {
+            ((ImageView) mCalloutBalloon.findViewById(R.id.badge)).setImageResource(R.mipmap.ic_launcher);
+            ((TextView) mCalloutBalloon.findViewById(R.id.title3)).setText(poiItem.getItemName());
+            ((TextView) mCalloutBalloon.findViewById(R.id.desc)).setText(kokcomment[poiItem.getTag()]);
+            return mCalloutBalloon;
+        }
+
+        @Override
+        public View getPressedCalloutBalloon(MapPOIItem poiItem) {
+            return null;
+        }
     }
 
     @Override
@@ -219,13 +233,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
-        Log.d("selected!", "tag");
-        Toast.makeText(this, Integer.toString(mapPOIItem.getTag()), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
-
+        Log.d("selected!", "tag");
+        Toast.makeText(this, kokidarray[mapPOIItem.getTag()], Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -237,41 +251,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
 
     }
-
-    public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-        private List<KokItem> items;
-
-        public RecyclerAdapter(List<KokItem> items) {
-            this.items = items;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.listlayout, parent, false);
-            return new MyViewHolder(v);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-            MyViewHolder myViewHolder = (MyViewHolder) holder;
-            myViewHolder.koktext.setText(items.get(position).koktext);
-        }
-
-        @Override
-        public int getItemCount() {
-            return items.size();
-        }
-    }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView koktext;
-
-        MyViewHolder(View view) {
-            super(view);
-            koktext = view.findViewById(R.id.title);
-        }
-    }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -287,7 +266,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             isPermission = true;
         }
     }
-
 
     // 전화번호 권한 요청
     private void callPermission() {
