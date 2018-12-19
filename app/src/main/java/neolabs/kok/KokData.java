@@ -14,7 +14,7 @@ public class KokData {
     private String id;
     @SerializedName("comments")
     @Expose
-    private List<Object> comments = null;
+    private List<Comment> comments = null;
     @SerializedName("userauthid")
     @Expose
     private String userauthid;
@@ -44,11 +44,11 @@ public class KokData {
         this.id = id;
     }
 
-    public List<Object> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Object> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 

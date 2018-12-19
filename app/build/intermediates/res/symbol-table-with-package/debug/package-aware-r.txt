@@ -1107,6 +1107,7 @@ id email_edittext2
 id email_login_button
 id email_signup_button
 id email_signup_button2
+id email_signup_button3
 id end
 id enterAlways
 id enterAlwaysCollapsed
@@ -1115,6 +1116,7 @@ id expand_activities_button
 id expanded_menu
 id feelimage2
 id female
+id female2
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1122,7 +1124,9 @@ id filled
 id fixed
 id forever
 id getname_edittext3
+id getname_edittext4
 id getname_edittext5
+id getname_edittext6
 id ghost_view
 id gone
 id group_divider
@@ -1148,6 +1152,7 @@ id listMode
 id list_item
 id logoutbutton
 id male
+id male2
 id mapView
 id masked
 id message
@@ -1173,6 +1178,7 @@ id parentPanel
 id parent_matrix
 id password_edittext
 id password_edittext2
+id password_edittext3
 id percent
 id pin
 id profile2

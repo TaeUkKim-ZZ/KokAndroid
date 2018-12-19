@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:textSize="60px"
-                android:text="김네오" />
+                android:text="잘 지내십니까?" />
 
             <TextView
                 android:id="@+id/introduce3"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:textSize="40px"
-                android:text="잘 지내십니까?" />
+                android:text="김네오" />
         </LinearLayout>
 
     </LinearLayout>

@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     List<KokItem> items = new ArrayList<>();
 
     String[] userauthidarray = new String[99999];
+    String[] usernamearray = new String[99999];
     String[] kokidarray = new String[99999];
     String[] kokcomment = new String[99999];
 
@@ -56,35 +57,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!isPermission){
-            callPermission();
-        }
-
-        gps = new GPSInfo(MainActivity.this);
-
-        // GPS 사용유무 가져오기
-        if (gps.isGetLocation()) {
-            //GPSInfo를 통해 알아낸 위도값과 경도값
-            double latitude = gps.getLatitude();
-            double longitude = gps.getLongitude();
-
-            Log.d("latitude", String.format("%f", latitude));
-            Log.d("longitude", String.format("%f", longitude));
-
-            mapView = new MapView(this);
-            mapView.setDaumMapApiKey("beb4ae99eb57de8785135bb2c5484f33");
-            mapViewContainer = (ViewGroup) findViewById(R.id.mapView);
-            mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude);
-            mapView.setMapCenterPoint(mapPoint, true);
-            mapViewContainer.addView(mapView);
-            mapView.setPOIItemEventListener(this);
-            mapView.setCalloutBalloonAdapter(new CustomCalloutBalloonAdapter());
-
-            getkokfromserver(String.format("%f", latitude), String.format("%f", longitude));
-        } else {
-            // GPS 를 사용할수 없으므로
-            gps.showSettingsAlert();
-        }
+        getgpsdata();
 
         gotoprofile = findViewById(R.id.myprofile);
         addkok = findViewById(R.id.addkok);
@@ -117,11 +90,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 switch (response.code()) {
                     case 200:
                         //Log.d("softtag", Integer.toString(response.body().size()));
+                        mapView.removeAllPOIItems();
                         for(int i = 0; i < response.body().size(); i++) {
-                            items.add(new KokItem(response.body().get(i).getMessage()));
+                            //items.add(new KokItem(response.body().get(i).getMessage()));
                             userauthidarray[i] = response.body().get(i).getUserauthid();
                             kokidarray[i] = response.body().get(i).getId();
                             kokcomment[i] = response.body().get(i).getMessage();
+                            usernamearray[i] = response.body().get(i).getUsernickname();
 
                             MapPOIItem marker = new MapPOIItem();
                             List<Double> point = response.body().get(i).getLocation().getCoordinates();
@@ -134,11 +109,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                             marker.setCustomImageResourceId(R.drawable.custom_marker_red);
                             marker.setCustomImageAutoscale(false);
                             marker.setCustomImageAnchor(0.5f, 1.0f);
-                            //marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
                             mapView.addPOIItem(marker);
-                            //mapView.selectPOIItem(marker, true);
-                            //mapView.setMapCenterPoint(marker, false);
-
 
                             Log.d("tag", String.format("%f", point.get(0)));
                             point.clear();
@@ -158,6 +129,47 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 Log.d("checkonthe", "error");
             }
         });
+    }
+
+    public void getgpsdata() {
+        if(!isPermission){
+            callPermission();
+        }
+
+        gps = new GPSInfo(MainActivity.this);
+
+        // GPS 사용유무 가져오기
+        if (gps.isGetLocation()) {
+            //GPSInfo를 통해 알아낸 위도값과 경도값
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
+
+            Log.d("latitude", String.format("%f", latitude));
+            Log.d("longitude", String.format("%f", longitude));
+
+            if(mapView == null) {
+                mapView = new MapView(this);
+                mapView.setDaumMapApiKey("beb4ae99eb57de8785135bb2c5484f33");
+                mapViewContainer = (ViewGroup) findViewById(R.id.mapView);
+                mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude);
+                mapView.setMapCenterPoint(mapPoint, true);
+                mapViewContainer.addView(mapView);
+                mapView.setPOIItemEventListener(this);
+                mapView.setCalloutBalloonAdapter(new CustomCalloutBalloonAdapter());
+            }
+
+            getkokfromserver(String.format("%f", latitude), String.format("%f", longitude));
+        } else {
+            // GPS 를 사용할수 없으므로
+            gps.showSettingsAlert();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getgpsdata();
     }
 
     @Override
@@ -239,7 +251,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
         Log.d("selected!", "tag");
-        Toast.makeText(this, kokidarray[mapPOIItem.getTag()], Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, kokidarray[mapPOIItem.getTag()], Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, KokCommentActivity.class);
+        intent.putExtra("username", usernamearray[mapPOIItem.getTag()]);
+        intent.putExtra("kokcomment", kokcomment[mapPOIItem.getTag()]);
+        intent.putExtra("userauthid", kokidarray[mapPOIItem.getTag()]); //유저가 아니라 콕 고유 authid이다.... 착각 ㄴㄴ
+        startActivity(intent);
     }
 
     @Override

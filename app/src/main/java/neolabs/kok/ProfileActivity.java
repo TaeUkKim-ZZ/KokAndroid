@@ -1,7 +1,12 @@
 package neolabs.kok;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     Button logout;
+    Button editprofile;
     String usernickname;
     String userintroduce;
     String userauthid;
@@ -38,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
     List<KokItem> items = new ArrayList<>();
 
     SwipeRefreshLayout mSwipeRefreshLayout;
-    String[] userauthidarray = new String[99999];
+    String[] kokauthidarray = new String[99999];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +61,9 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
 
         putusername = findViewById(R.id.textView);
         putintroduce = findViewById(R.id.textView3);
+
         logout = findViewById(R.id.logoutbutton);
+        editprofile = findViewById(R.id.editbutton);
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         usernickname = pref.getString("nickname", "");
@@ -89,6 +97,14 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
             }
         });
 
+        editprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
@@ -97,12 +113,50 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
                     }
 
                     @Override
-                    public void onLongItemClick(View view, int position) {
+                    public void onLongItemClick(View view, final int position) {
                         Toast.makeText(getApplicationContext(),position+"번 째 아이템 롱 클릭",Toast.LENGTH_SHORT).show();
                         //삭제 여부를 물어본후 삭제한다.
+                        AlertDialog.Builder alt_bld = new AlertDialog.Builder(ProfileActivity.this);
+                        alt_bld.setMessage("정말로 삭제하시겠습니까?").setCancelable(
+                                false).setPositiveButton("네",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // 네 클릭
+                                        deletekokfromserver(kokauthidarray[position]);
+                                        items.remove(position);
+                                        mAdapter.notifyDataSetChanged();
+                                    }
+                                }).setNegativeButton("아니오",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // 아니오 클릭. dialog 닫기.
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert = alt_bld.create();
+
+                        // 대화창 제목 설정
+                        //alert.setTitle("GPS 사용 허가");
+                        // 대화창 아이콘 설정
+                        alert.setIcon(R.mipmap.ic_launcher);
+                        // 대화창 배경 색 설정
+                        //alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,62,79,92)));
+                        alert.show();
                     }
                 }));
         getkokfromserver();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        String nickname = pref.getString("nickname", "");
+        String introduce = pref.getString("introduce", "");
+
+        putusername.setText(nickname);
+        putintroduce.setText(introduce);
     }
 
     public void getkokfromserver () {
@@ -118,13 +172,38 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
                         //Log.d("softtag", Integer.toString(response.body().size()));
                         for(int i = 0; i < response.body().size(); i++) {
                             items.add(new KokItem(response.body().get(i).getMessage()));
-                            userauthidarray[i] = response.body().get(i).getUserauthid();
+                            kokauthidarray[i] = response.body().get(i).getId();
                             //Log.d("softtag", response.body().get(i).getMessage());
                         }
                         mAdapter.notifyDataSetChanged();
                         mSwipeRefreshLayout.setRefreshing(false);
                         //출처: http://jekalmin.tistory.com/entry/Gson을-이용한-json을-객체에-담기 [jekalmin의 블로그]
                         //Log.d("softtag", body.toString());
+                        break;
+                    case 409:
+                        Toast.makeText(ProfileActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                    default:
+                        Log.e("asdf", response.code() + "");
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<KokData>> call, @NonNull Throwable t) {
+                Log.d("checkonthe", "error");
+            }
+        });
+    }
+
+    public void deletekokfromserver (String kokid) {
+        Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        RetrofitExService service = client.create(RetrofitExService.class);
+        Call<List<KokData>> call = service.deletemyPick(kokid);
+        call.enqueue(new Callback<List<KokData>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<KokData>> call, @NonNull retrofit2.Response<List<KokData>> response) {
+                switch (response.code()) {
+                    case 200:
                         break;
                     case 409:
                         Toast.makeText(ProfileActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();

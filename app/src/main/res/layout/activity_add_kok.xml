@@ -21,5 +21,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="보내기" />
+        android:text="콕 추가하기" />
 </RelativeLayout>

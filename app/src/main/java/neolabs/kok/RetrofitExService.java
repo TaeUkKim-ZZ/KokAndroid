@@ -11,6 +11,9 @@ public interface RetrofitExService {
     @GET("user/signup")
     Call<Data> signupUserInfo(@Query("email") String email, @Query("password") String password, @Query("gender") String gender, @Query("nickname") String nickname, @Query("introduce") String introduce);
 
+    @GET("edituserinfo")
+    Call<Data> EditUserInfo(@Query("useremail") String useremail, @Query("password") String password, @Query("gender") String gender, @Query("nickname") String nickname, @Query("introduce") String introduce);
+
     @GET("user/signin")
     Call<Data> signinUserInfo(@Query("email") String email, @Query("password") String password);
 
@@ -22,6 +25,18 @@ public interface RetrofitExService {
 
     @GET("getpickmy")
     Call<List<KokData>> getmyPick(@Query("userauthid") String userauthid);
+
+    @GET("deletepickmy")
+    Call<List<KokData>> deletemyPick(@Query("deleteuseruid") String deleteuseruid);
+
+    @GET("addcomment")
+    Call<KokData> addComment(@Query("userauthid") String userauthid, @Query("contents") String contents, @Query("authorauthid") String authorauthid, @Query("authorusernickname") String authorusernickname);
+
+    @GET("deletecomment")
+    Call<KokData> deleteComment(@Query("userauthid") String userauthid, @Query("idofcomment") String commentcontents);
+
+    @GET("getcomments")
+    Call<KokData> getComment(@Query("userauthid") String userauthid);
 
     //출처: http://falinrush.tistory.com/5 [형필 개발일지]
 }
