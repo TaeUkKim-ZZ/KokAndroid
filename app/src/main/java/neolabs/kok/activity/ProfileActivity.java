@@ -1,12 +1,9 @@
-package neolabs.kok;
+package neolabs.kok.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +21,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import neolabs.kok.R;
+import neolabs.kok.RecyclerItemClickListener;
+import neolabs.kok.data.KokData;
+import neolabs.kok.item.KokItem;
+import neolabs.kok.retrofit.RetrofitExService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -51,37 +53,12 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout2);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
-                android.R.color.holo_green_dark,
-                android.R.color.holo_orange_dark,
-                android.R.color.holo_blue_dark);
-        mSwipeRefreshLayout.setRefreshing(false);
-
-        putusername = findViewById(R.id.textView);
-        putintroduce = findViewById(R.id.textView3);
-
-        logout = findViewById(R.id.logoutbutton);
-        editprofile = findViewById(R.id.editbutton);
-
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         usernickname = pref.getString("nickname", "");
         userintroduce = pref.getString("introduce", "");
         userauthid = pref.getString("userauthid", "");
 
-        recyclerView = findViewById(R.id.myrecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        //여기에 아이템 추가.... 위치 얻어서....?
-
-        //items.add(new KokItem("test"));
-
-        mAdapter = new RecyclerAdapter2(items);
-        recyclerView.setAdapter(mAdapter);
-
-        putusername.setText(usernickname);
-        putintroduce.setText(userintroduce);
+        setView();
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,18 +113,46 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
 
                         AlertDialog alert = alt_bld.create();
 
-                        // 대화창 제목 설정
-                        //alert.setTitle("GPS 사용 허가");
                         // 대화창 아이콘 설정
                         alert.setIcon(R.mipmap.ic_launcher);
-                        // 대화창 배경 색 설정
-                        //alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,62,79,92)));
+
                         alert.show();
                     }
                 }));
         getkokfromserver();
     }
 
+    //초기 뷰 설정
+    public void setView() {
+        mSwipeRefreshLayout = findViewById(R.id.swipe_layout2);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        mSwipeRefreshLayout.setRefreshing(false);
+
+        putusername = findViewById(R.id.textView);
+        putintroduce = findViewById(R.id.textView3);
+
+        logout = findViewById(R.id.logoutbutton);
+        editprofile = findViewById(R.id.editbutton);
+
+        recyclerView = findViewById(R.id.myrecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //여기에 아이템 추가.... 위치 얻어서....?
+
+        //items.add(new KokItem("test"));
+
+        mAdapter = new RecyclerAdapter2(items);
+        recyclerView.setAdapter(mAdapter);
+
+        putusername.setText(usernickname);
+        putintroduce.setText(userintroduce);
+    }
+
+    //수정후 다시 화면을 띄울때 반영을 해준다.
     @Override
     public void onResume() {
         super.onResume();
@@ -159,8 +164,9 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
         putintroduce.setText(introduce);
     }
 
+    //서버에서 가까이에 있는 콕을 받아온다.
     public void getkokfromserver () {
-        Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitExService service = client.create(RetrofitExService.class);
         Call<List<KokData>> call = service.getmyPick(userauthid);
         call.enqueue(new Callback<List<KokData>>() {
@@ -169,16 +175,13 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
                 Log.d("softtag", "isitworkingcheck");
                 switch (response.code()) {
                     case 200:
-                        //Log.d("softtag", Integer.toString(response.body().size()));
                         for(int i = 0; i < response.body().size(); i++) {
                             items.add(new KokItem(response.body().get(i).getMessage()));
                             kokauthidarray[i] = response.body().get(i).getId();
-                            //Log.d("softtag", response.body().get(i).getMessage());
                         }
                         mAdapter.notifyDataSetChanged();
                         mSwipeRefreshLayout.setRefreshing(false);
                         //출처: http://jekalmin.tistory.com/entry/Gson을-이용한-json을-객체에-담기 [jekalmin의 블로그]
-                        //Log.d("softtag", body.toString());
                         break;
                     case 409:
                         Toast.makeText(ProfileActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
@@ -195,8 +198,9 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
         });
     }
 
+    //콕을 서버에서 부터 지우는 리스폰스를 보낸다.
     public void deletekokfromserver (String kokid) {
-        Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitExService service = client.create(RetrofitExService.class);
         Call<List<KokData>> call = service.deletemyPick(kokid);
         call.enqueue(new Callback<List<KokData>>() {
@@ -220,6 +224,7 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
         });
     }
 
+    //당겨서 리프레쉬
     @Override
     public void onRefresh() {
         items.clear();

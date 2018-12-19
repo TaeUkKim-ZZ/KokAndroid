@@ -1,4 +1,4 @@
-package neolabs.kok;
+package neolabs.kok.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,12 +16,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import net.daum.mf.map.api.MapPOIItem;
-import net.daum.mf.map.api.MapPoint;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import neolabs.kok.R;
+import neolabs.kok.data.Comment;
+import neolabs.kok.data.KokData;
+import neolabs.kok.item.KokCommentItem;
+import neolabs.kok.retrofit.RetrofitExService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -71,7 +73,7 @@ public class KokCommentActivity extends AppCompatActivity {
         kokcomment.setText(intent.getStringExtra("kokcomment"));
         userauthid = intent.getStringExtra("userauthid");
 
-        Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitExService service = client.create(RetrofitExService.class);
         Call<KokData> call = service.getComment(userauthid);
         call.enqueue(new Callback<KokData>() {
@@ -109,7 +111,7 @@ public class KokCommentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(commentview.getText().toString().equals("")) return;
-                Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+                Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
                 RetrofitExService service = client.create(RetrofitExService.class);
                 Call<KokData> call = service.addComment(userauthid, commentview.getText().toString(), myselfauthid, myselfnickname);
                 call.enqueue(new Callback<KokData>() {
@@ -171,7 +173,7 @@ public class KokCommentActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     items.remove(position);
                     mAdapter.notifyDataSetChanged();
-                    Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+                    Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
                     RetrofitExService service = client.create(RetrofitExService.class);
                     Call<KokData> call = service.deleteComment(userauthid, commentsid[position]);
                     call.enqueue(new Callback<KokData>() {

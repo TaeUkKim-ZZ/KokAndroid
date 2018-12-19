@@ -1,4 +1,4 @@
-package neolabs.kok;
+package neolabs.kok.item;
 
 public class KokCommentItem {
     public String koktext;

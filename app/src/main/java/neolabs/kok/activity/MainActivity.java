@@ -1,4 +1,4 @@
-package neolabs.kok;
+package neolabs.kok.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,6 +24,11 @@ import net.daum.mf.map.api.MapView;
 import java.util.ArrayList;
 import java.util.List;
 
+import neolabs.kok.GPSInfo;
+import neolabs.kok.R;
+import neolabs.kok.data.KokData;
+import neolabs.kok.item.KokItem;
+import neolabs.kok.retrofit.RetrofitExService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -57,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getgpsdata();
+        getGpsData();
 
         gotoprofile = findViewById(R.id.myprofile);
         addkok = findViewById(R.id.addkok);
@@ -79,8 +84,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         });
     }
 
+    //가까이에 있는 콕을 서버에서 부터 받아온다.
     public void getkokfromserver (String latitude, String longitude) {
-        Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitExService service = client.create(RetrofitExService.class);
         Call<List<KokData>> call = service.getPick(latitude, longitude);
         call.enqueue(new Callback<List<KokData>>() {
@@ -89,10 +95,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 Log.d("softtag", "isitworkingcheck");
                 switch (response.code()) {
                     case 200:
-                        //Log.d("softtag", Integer.toString(response.body().size()));
+                        //일단 콕들을 전부 다 지우고 시작한다.
                         mapView.removeAllPOIItems();
                         for(int i = 0; i < response.body().size(); i++) {
-                            //items.add(new KokItem(response.body().get(i).getMessage()));
                             userauthidarray[i] = response.body().get(i).getUserauthid();
                             kokidarray[i] = response.body().get(i).getId();
                             kokcomment[i] = response.body().get(i).getMessage();
@@ -131,7 +136,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         });
     }
 
-    public void getgpsdata() {
+    //위도와 경도를 얻어온다.
+    public void getGpsData() {
         if(!isPermission){
             callPermission();
         }
@@ -147,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             Log.d("latitude", String.format("%f", latitude));
             Log.d("longitude", String.format("%f", longitude));
 
+            //중복 선언로 인한 FC방지를 위한 if문
             if(mapView == null) {
                 mapView = new MapView(this);
                 mapView.setDaumMapApiKey("beb4ae99eb57de8785135bb2c5484f33");
@@ -169,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     public void onResume() {
         super.onResume();
 
-        getgpsdata();
+        getGpsData();
     }
 
     @Override
@@ -243,15 +250,16 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
+    //맵뷰에서 생겨난 POI를 선택했을때 호출되는 함수.
     @Override
     public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
 
     }
 
+    //맵뷰에서 생겨난 POI를 선택하고 나온 풍선을 선택했을때 호출되는 함수.
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
         Log.d("selected!", "tag");
-        //Toast.makeText(this, kokidarray[mapPOIItem.getTag()], Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, KokCommentActivity.class);
         intent.putExtra("username", usernamearray[mapPOIItem.getTag()]);
         intent.putExtra("kokcomment", kokcomment[mapPOIItem.getTag()]);

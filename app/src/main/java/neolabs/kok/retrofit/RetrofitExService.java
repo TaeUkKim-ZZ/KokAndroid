@@ -1,12 +1,16 @@
-package neolabs.kok;
+package neolabs.kok.retrofit;
 
 import java.util.List;
 
+import neolabs.kok.data.Data;
+import neolabs.kok.data.KokData;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface RetrofitExService {
+
+    String BASE_URL = "https://kok1.herokuapp.com/";
 
     @GET("user/signup")
     Call<Data> signupUserInfo(@Query("email") String email, @Query("password") String password, @Query("gender") String gender, @Query("nickname") String nickname, @Query("introduce") String introduce);

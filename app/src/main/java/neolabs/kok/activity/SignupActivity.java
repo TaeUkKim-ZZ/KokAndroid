@@ -1,8 +1,7 @@
-package neolabs.kok;
+package neolabs.kok.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,17 +11,10 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import neolabs.kok.LockClass;
+import neolabs.kok.R;
+import neolabs.kok.data.Data;
+import neolabs.kok.retrofit.RetrofitExService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -50,17 +42,13 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        inputemail = findViewById(R.id.email_edittext2);
-        inputpassword = findViewById(R.id.password_edittext2);
-        inputnickname = findViewById(R.id.getname_edittext3);
-        inputintroduce = findViewById(R.id.getname_edittext5);
-        male = findViewById(R.id.male);
-        female = findViewById(R.id.female);
+        setView();
 
         signupcomplete = findViewById(R.id.email_signup_button2);
         signupcomplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //정보들을 뷰로 부터 얻어와서 최종적으로 가입함수로 보낸다.
                 emailstring = inputemail.getText().toString();
                 passwordstring = inputpassword.getText().toString();
                 nicknamestring = inputnickname.getText().toString();
@@ -78,8 +66,18 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+    public void setView() {
+        inputemail = findViewById(R.id.email_edittext2);
+        inputpassword = findViewById(R.id.password_edittext2);
+        inputnickname = findViewById(R.id.getname_edittext3);
+        inputintroduce = findViewById(R.id.getname_edittext5);
+        male = findViewById(R.id.male);
+        female = findViewById(R.id.female);
+    }
+
+    //서버에 사용자를 가입시켜준다.
     public void signintoserver(String email, String password, String gender, String introduce, String nickname) {
-        Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitExService service = client.create(RetrofitExService.class);
         Call<Data> call = service.signupUserInfo(email, password, gender, nickname, introduce);
         call.enqueue(new Callback<Data>() {
@@ -89,6 +87,7 @@ public class SignupActivity extends AppCompatActivity {
                     case 200:
                         Data body = response.body();
 
+                        //Retrofit에서 받아온 데이터를 Sharedpreferences에 저장해준다.
                         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                         SharedPreferences.Editor editor = pref.edit();
                         editor.putString("useremail", body.getEmail());
@@ -100,6 +99,7 @@ public class SignupActivity extends AppCompatActivity {
 
                         Toast.makeText(SignupActivity.this, "가입 완료", Toast.LENGTH_SHORT).show();
 
+                        //가입이 끝난 이후에 메인 엑티비티로 간다.
                         Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

@@ -1,4 +1,4 @@
-package neolabs.kok;
+package neolabs.kok.activity;
 
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import neolabs.kok.GPSInfo;
+import neolabs.kok.R;
+import neolabs.kok.data.Data;
+import neolabs.kok.retrofit.RetrofitExService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -31,7 +35,7 @@ public class AddKokActivity extends AppCompatActivity {
     private boolean isAccessCoarseLocation = false;
     private boolean isPermission = false;
 
-    private GPSInfo gps;
+    private GPSInfo GPS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,6 @@ public class AddKokActivity extends AppCompatActivity {
         userauthid = pref.getString("userauthid", null);
         usernickname = pref.getString("nickname", null);
 
-
         sendmessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,21 +59,18 @@ public class AddKokActivity extends AppCompatActivity {
                     return;
                 }
 
-                gps = new GPSInfo(AddKokActivity.this);
+                GPS = new GPSInfo(AddKokActivity.this);
 
                 // GPS 사용유무 가져오기
-                if (gps.isGetLocation()) {
+                if (GPS.isGetLocation()) {
                     //GPSInfo를 통해 알아낸 위도값과 경도값
-                    double latitude = gps.getLatitude();
-                    double longitude = gps.getLongitude();
-
-                    Log.d("latitude", String.format("%f", latitude));
-                    Log.d("longitude", String.format("%f", longitude));
+                    double latitude = GPS.getLatitude();
+                    double longitude = GPS.getLongitude();
 
                     sendreqeust(String.format("%f", latitude), String.format("%f", longitude), userauthid, gomessage, usernickname);
                 } else {
                     // GPS 를 사용할수 없으므로
-                    gps.showSettingsAlert();
+                    GPS.showSettingsAlert();
                 }
             }
         });
@@ -78,6 +78,7 @@ public class AddKokActivity extends AppCompatActivity {
         callPermission();
     }
 
+    //권한 요청이 끝났을때 데이터를 받아온다.
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == PERMISSIONS_ACCESS_FINE_LOCATION
@@ -114,9 +115,9 @@ public class AddKokActivity extends AppCompatActivity {
         }
     }
 
+    //콕을 저장하는 메소드.
     public void sendreqeust(String latitude, String longitude, String userauthid, String message, String usernickname) {
-        //리퀘스트를 보낸다아아아아아아아
-        Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitExService service = client.create(RetrofitExService.class);
         Call<Data> call = service.addPick(latitude, longitude, userauthid, message, usernickname);
         call.enqueue(new Callback<Data>() {

@@ -1,4 +1,4 @@
-package neolabs.kok;
+package neolabs.kok.activity;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,10 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import neolabs.kok.LockClass;
+import neolabs.kok.R;
+import neolabs.kok.data.Data;
+import neolabs.kok.retrofit.RetrofitExService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -36,11 +40,7 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        inputpassword = findViewById(R.id.password_edittext3);
-        inputnickname = findViewById(R.id.getname_edittext4);
-        inputintroduce = findViewById(R.id.getname_edittext6);
-        editmale = findViewById(R.id.male2);
-        editfemale = findViewById(R.id.female2);
+        setView();
 
         senddata = findViewById(R.id.email_signup_button3);
         senddata.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +63,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
                 introducestring = inputintroduce.getText().toString();
 
-                Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+                Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
                 RetrofitExService service = client.create(RetrofitExService.class);
                 Call<Data> call = service.EditUserInfo(findemail, encryptedstring, genderstring, nicknamestring, introducestring);
                 call.enqueue(new Callback<Data>() {
@@ -98,5 +98,13 @@ public class EditProfileActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void setView() {
+        inputpassword = findViewById(R.id.password_edittext3);
+        inputnickname = findViewById(R.id.getname_edittext4);
+        inputintroduce = findViewById(R.id.getname_edittext6);
+        editmale = findViewById(R.id.male2);
+        editfemale = findViewById(R.id.female2);
     }
 }

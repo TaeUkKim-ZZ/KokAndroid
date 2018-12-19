@@ -1,4 +1,4 @@
-package neolabs.kok;
+package neolabs.kok.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import neolabs.kok.LockClass;
+import neolabs.kok.R;
+import neolabs.kok.data.Data;
+import neolabs.kok.retrofit.RetrofitExService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -42,9 +46,9 @@ public class LoginActivity extends AppCompatActivity {
                 emailstring = inputemail.getText().toString();
                 passwordstring = inputpassword.getText().toString();
 
-                //SHA-512암호화 해야지....
+                //SHA-512암호화를 해준다.
                 encryptedstring = getsha512.getSHA512(passwordstring);
-                passwordstring = ""; //일이 끝난 이후에는 원문을 메모리에서도 없애버리자.
+                passwordstring = ""; //암호화가 끝난 이후에는 원문을 메모리에서도 제거한다.
 
                 //결과를 받아온다.
                 logintoserver(emailstring, encryptedstring);
@@ -61,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void logintoserver(String email, String password) {
-        Retrofit client = new Retrofit.Builder().baseUrl("https://kok1.herokuapp.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitExService service = client.create(RetrofitExService.class);
         Call<Data> call = service.signinUserInfo(email, password);
         call.enqueue(new Callback<Data>() {
