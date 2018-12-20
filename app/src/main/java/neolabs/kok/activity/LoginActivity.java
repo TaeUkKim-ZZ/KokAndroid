@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import neolabs.kok.LockClass;
+import neolabs.kok.sutff.LockClass;
 import neolabs.kok.R;
 import neolabs.kok.data.Data;
 import neolabs.kok.retrofit.RetrofitExService;

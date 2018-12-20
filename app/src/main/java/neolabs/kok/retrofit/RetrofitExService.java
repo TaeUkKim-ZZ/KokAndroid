@@ -1,12 +1,21 @@
 package neolabs.kok.retrofit;
 
+import java.util.HashMap;
 import java.util.List;
 
 import neolabs.kok.data.Data;
 import neolabs.kok.data.KokData;
+import neolabs.kok.data.Profile;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.FieldMap;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface RetrofitExService {
 
@@ -41,6 +50,10 @@ public interface RetrofitExService {
 
     @GET("getcomments")
     Call<KokData> getComment(@Query("userauthid") String userauthid);
+
+    @Multipart
+    @POST("uploadprofileimage")
+    Call<Profile> uploadProfile(@Part MultipartBody.Part file, @QueryMap HashMap<String, Object> param);
 
     //출처: http://falinrush.tistory.com/5 [형필 개발일지]
 }

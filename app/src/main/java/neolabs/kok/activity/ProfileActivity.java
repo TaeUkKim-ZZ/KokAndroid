@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import neolabs.kok.R;
-import neolabs.kok.RecyclerItemClickListener;
+import neolabs.kok.sutff.RecyclerItemClickListener;
 import neolabs.kok.data.KokData;
 import neolabs.kok.item.KokItem;
 import neolabs.kok.retrofit.RetrofitExService;

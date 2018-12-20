@@ -1,16 +1,20 @@
 package neolabs.kok.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import neolabs.kok.LockClass;
+import neolabs.kok.sutff.LockClass;
 import neolabs.kok.R;
 import neolabs.kok.data.Data;
 import neolabs.kok.retrofit.RetrofitExService;
@@ -20,6 +24,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EditProfileActivity extends AppCompatActivity {
+
+    private static final int PICK_FROM_ALBUM = 10;
 
     EditText inputpassword;
     EditText inputnickname;
@@ -34,6 +40,8 @@ public class EditProfileActivity extends AppCompatActivity {
     String introducestring;
     String findemail;
     LockClass getsha512 = new LockClass();
+    Uri imageUri;
+    ImageView logoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +50,16 @@ public class EditProfileActivity extends AppCompatActivity {
 
         setView();
 
-        senddata = findViewById(R.id.email_signup_button3);
+        logoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent로 보낸다.
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+                startActivityForResult(intent, PICK_FROM_ALBUM);
+            }
+        });
+
         senddata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,11 +117,23 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
+    //뷰 설정
     public void setView() {
+        senddata = findViewById(R.id.email_signup_button3);
         inputpassword = findViewById(R.id.password_edittext3);
         inputnickname = findViewById(R.id.getname_edittext4);
         inputintroduce = findViewById(R.id.getname_edittext6);
         editmale = findViewById(R.id.male2);
         editfemale = findViewById(R.id.female2);
+        logoView = findViewById(R.id.image_logo2);
+    }
+
+    //이미지 선택 결과를 받아와서 이미지를 변경해주고 경로를 저장한다.
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == PICK_FROM_ALBUM && resultCode == RESULT_OK) {
+            logoView.setImageURI(data.getData()); //가운데 이미지뷰 변경.
+            imageUri = data.getData(); //이미지 경로 원본
+        }
     }
 }

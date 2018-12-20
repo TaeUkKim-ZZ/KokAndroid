@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import neolabs.kok.GPSInfo;
+import neolabs.kok.sutff.GPSInfo;
 import neolabs.kok.R;
 import neolabs.kok.data.Data;
 import neolabs.kok.retrofit.RetrofitExService;
@@ -98,6 +98,7 @@ public class AddKokActivity extends AppCompatActivity {
     // 전화번호 권한 요청
     private void callPermission() {
         // Check the SDK version and whether the permission is already granted or not.
+        // SDK버전을 확인한후, 권한이 이미 주어져 있는지 아닌지를 확인해준다.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                 && ContextCompat.checkSelfPermission(AddKokActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {

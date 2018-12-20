@@ -24,7 +24,7 @@ import net.daum.mf.map.api.MapView;
 import java.util.ArrayList;
 import java.util.List;
 
-import neolabs.kok.GPSInfo;
+import neolabs.kok.sutff.GPSInfo;
 import neolabs.kok.R;
 import neolabs.kok.data.KokData;
 import neolabs.kok.item.KokItem;
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     FloatingActionButton gotoprofile;
     FloatingActionButton addkok;
+    FloatingActionButton goChat;
 
     List<KokItem> items = new ArrayList<>();
 
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         gotoprofile = findViewById(R.id.myprofile);
         addkok = findViewById(R.id.addkok);
+        goChat = findViewById(R.id.chating);
 
         gotoprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +81,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddKokActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        goChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ChatlistActivity.class);
                 startActivity(intent);
             }
         });
@@ -205,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
     }
 
+    //맵뷰가 처음 실행되었을때 호출되는 메서드.
     @Override
     public void onMapViewInitialized(MapView mapView) {
 

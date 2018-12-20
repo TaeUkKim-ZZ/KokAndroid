@@ -1073,6 +1073,7 @@ id center
 id center_horizontal
 id center_vertical
 id chains
+id chating
 id checkbox
 id chronometer
 id clip_horizontal
@@ -1128,6 +1129,7 @@ id getname_edittext4
 id getname_edittext5
 id getname_edittext6
 id ghost_view
+id glide_custom_view_target_tag
 id gone
 id group_divider
 id groups
@@ -1138,6 +1140,7 @@ id icon_group
 id ifRoom
 id image
 id image_logo
+id image_logo2
 id info
 id introduce3
 id invisible
@@ -1326,6 +1329,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_add_kok
+layout activity_chatlist
 layout activity_edit_profile
 layout activity_kok_comment
 layout activity_login

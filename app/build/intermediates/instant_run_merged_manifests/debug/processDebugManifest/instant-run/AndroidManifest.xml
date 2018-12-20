@@ -9,6 +9,8 @@
         android:targetSdkVersion="28" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -27,20 +29,21 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="neolabs.kok.LoginActivity" />
-        <activity android:name="neolabs.kok.SignupActivity" />
-        <activity android:name="neolabs.kok.MainActivity" />
-        <activity android:name="neolabs.kok.SplashActivity" >
+        <activity android:name="neolabs.kok.activity.LoginActivity" />
+        <activity android:name="neolabs.kok.activity.SignupActivity" />
+        <activity android:name="neolabs.kok.activity.MainActivity" />
+        <activity android:name="neolabs.kok.activity.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="neolabs.kok.ProfileActivity" />
-        <activity android:name="neolabs.kok.AddKokActivity" />
-        <activity android:name="neolabs.kok.KokCommentActivity" />
-        <activity android:name="neolabs.kok.EditProfileActivity" />
+        <activity android:name="neolabs.kok.activity.ProfileActivity" />
+        <activity android:name="neolabs.kok.activity.AddKokActivity" />
+        <activity android:name="neolabs.kok.activity.KokCommentActivity" />
+        <activity android:name="neolabs.kok.activity.EditProfileActivity" />
+        <activity android:name="neolabs.kok.activity.ChatlistActivity" />
 
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"
