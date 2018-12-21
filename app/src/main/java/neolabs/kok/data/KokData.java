@@ -9,21 +9,31 @@ public class KokData {
     @SerializedName("location")
     @Expose
     private Location location;
+
     @SerializedName("_id")
     @Expose
     private String id;
+
     @SerializedName("comments")
     @Expose
     private List<Comment> comments = null;
+
     @SerializedName("userauthid")
     @Expose
     private String userauthid;
+
     @SerializedName("usernickname")
     @Expose
     private String usernickname;
+
     @SerializedName("message")
     @Expose
     private String message;
+
+    @SerializedName("profileimage")
+    @Expose
+    private String profileimage;
+
     @SerializedName("__v")
     @Expose
     private Integer v;
@@ -66,6 +76,14 @@ public class KokData {
 
     public void setUsernickname(String usernickname) {
         this.usernickname = usernickname;
+    }
+
+    public String getProfileimage() {
+        return profileimage;
+    }
+
+    public void setProfileimage(String profileimage) {
+        this.profileimage = profileimage;
     }
 
     public String getMessage() {

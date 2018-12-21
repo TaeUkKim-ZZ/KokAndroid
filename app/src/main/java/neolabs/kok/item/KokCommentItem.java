@@ -2,10 +2,12 @@ package neolabs.kok.item;
 
 public class KokCommentItem {
     public String koktext;
-    public String kokuser;
+    public String kokuserauthid;
+    public Boolean ismycomment;
 
-    public KokCommentItem(String koktext, String kokuser) {
+    public KokCommentItem(String koktext, String kokuserauthid, Boolean ismycomment) {
         this.koktext = koktext;
-        this.kokuser = kokuser;
+        this.kokuserauthid = kokuserauthid;
+        this.ismycomment = ismycomment;
     }
 }

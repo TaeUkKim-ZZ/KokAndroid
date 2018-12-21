@@ -1,5 +1,6 @@
 package neolabs.kok.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,12 +16,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import neolabs.kok.R;
 import neolabs.kok.sutff.RecyclerItemClickListener;
 import neolabs.kok.data.KokData;
@@ -47,6 +54,9 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
 
     SwipeRefreshLayout mSwipeRefreshLayout;
     String[] kokauthidarray = new String[99999];
+
+    ImageView profileImage;
+    String profileImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,6 +160,19 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
 
         putusername.setText(usernickname);
         putintroduce.setText(userintroduce);
+
+        profileImage = findViewById(R.id.profile_image);
+
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        String profilelink = pref.getString("profileImage",  null);
+
+        //나중에 로드중인 GIF로 바꿔주자.
+        profileImage.setImageResource(R.mipmap.ic_launcher_round);
+
+        Glide.with(ProfileActivity.this)
+                .load(RetrofitExService.BASE_URL + "images/" + profilelink)
+                .apply(RequestOptions.circleCropTransform())
+                .into(profileImage);
     }
 
     //수정후 다시 화면을 띄울때 반영을 해준다.
@@ -159,9 +182,18 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
         String nickname = pref.getString("nickname", "");
         String introduce = pref.getString("introduce", "");
+        String profilelink = pref.getString("profileImage", "");
 
         putusername.setText(nickname);
         putintroduce.setText(introduce);
+
+        //나중에 로드중인 gif로 바꿔주자.
+        profileImage.setImageResource(R.mipmap.ic_launcher_round);
+
+        Glide.with(ProfileActivity.this)
+                .load(RetrofitExService.BASE_URL + "images/" + profilelink)
+                .apply(RequestOptions.circleCropTransform())
+                .into(profileImage);
     }
 
     //서버에서 가까이에 있는 콕을 받아온다.

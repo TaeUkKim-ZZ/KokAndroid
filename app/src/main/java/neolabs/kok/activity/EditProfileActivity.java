@@ -2,6 +2,7 @@ package neolabs.kok.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -14,12 +15,21 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.io.File;
+import java.util.HashMap;
+
+import neolabs.kok.data.Profile;
+import neolabs.kok.retrofit.RetrofitConfig;
 import neolabs.kok.sutff.LockClass;
 import neolabs.kok.R;
 import neolabs.kok.data.Data;
 import neolabs.kok.retrofit.RetrofitExService;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -40,8 +50,10 @@ public class EditProfileActivity extends AppCompatActivity {
     String introducestring;
     String findemail;
     LockClass getsha512 = new LockClass();
-    Uri imageUri;
+    Uri imageUri = null; //초기값 따로정의
     ImageView logoView;
+
+    String mediaPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +102,10 @@ public class EditProfileActivity extends AppCompatActivity {
                             case 200:
                                 Data body = response.body();
 
+                                if(imageUri != null) {
+                                    sendProfileImage(body.getId());
+                                }
+
                                 SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = pref.edit();
                                 editor.putString("gender", body.getGender());
@@ -98,6 +114,8 @@ public class EditProfileActivity extends AppCompatActivity {
                                 editor.apply();
 
                                 Toast.makeText(EditProfileActivity.this, "수정 완료", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
+                                startActivity(intent);
                                 finish();
                                 break;
                             case 409:
@@ -113,6 +131,36 @@ public class EditProfileActivity extends AppCompatActivity {
                         Log.d("checkonthe", "error");
                     }
                 });
+            }
+        });
+    }
+
+    public void sendProfileImage(String userauth) {
+        Log.d("ispost?", mediaPath);
+        File file = new File(mediaPath);
+
+        HashMap<String, Object> input = new HashMap<>();
+        input.put("userauthid", userauth);
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+
+        RetrofitExService getResponse = RetrofitConfig.getRetrofit().create(RetrofitExService.class);
+        Call<Profile> call = getResponse.uploadProfile(body, input);
+        call.enqueue(new Callback<Profile>() {
+            @Override
+            public void onResponse(Call<Profile> call, Response<Profile> response) {
+                if(response.isSuccessful()) {
+                    SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("profileImage", response.body().getFilename());
+                    editor.apply();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Profile> call, Throwable t) {
+                Log.d("FailFailFail", "FailFailFail");
             }
         });
     }
@@ -134,6 +182,16 @@ public class EditProfileActivity extends AppCompatActivity {
         if(requestCode == PICK_FROM_ALBUM && resultCode == RESULT_OK) {
             logoView.setImageURI(data.getData()); //가운데 이미지뷰 변경.
             imageUri = data.getData(); //이미지 경로 원본
+
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+            Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
+            assert cursor != null;
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            mediaPath = cursor.getString(columnIndex);
+            cursor.close();
         }
     }
 }

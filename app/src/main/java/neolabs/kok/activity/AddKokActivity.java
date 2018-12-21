@@ -28,6 +28,7 @@ public class AddKokActivity extends AppCompatActivity {
     String gomessage;
     String userauthid;
     String usernickname;
+    String userprofile;
 
     private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
     private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
@@ -46,8 +47,9 @@ public class AddKokActivity extends AppCompatActivity {
         inputmessage = findViewById(R.id.editText2);
 
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-        userauthid = pref.getString("userauthid", null);
+        userauthid = pref.getString("userauthid", null); //이것만 가지고 따로 유저 내용을 리퀘스트로 받아와야겠다. 안되겠네....
         usernickname = pref.getString("nickname", null);
+        userprofile = pref.getString("profileImage", null);
 
         sendmessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +69,7 @@ public class AddKokActivity extends AppCompatActivity {
                     double latitude = GPS.getLatitude();
                     double longitude = GPS.getLongitude();
 
-                    sendreqeust(String.format("%f", latitude), String.format("%f", longitude), userauthid, gomessage, usernickname);
+                    sendreqeust(String.format("%f", latitude), String.format("%f", longitude), userauthid, gomessage, usernickname, userprofile);
                 } else {
                     // GPS 를 사용할수 없으므로
                     GPS.showSettingsAlert();
@@ -117,10 +119,10 @@ public class AddKokActivity extends AppCompatActivity {
     }
 
     //콕을 저장하는 메소드.
-    public void sendreqeust(String latitude, String longitude, String userauthid, String message, String usernickname) {
+    public void sendreqeust(String latitude, String longitude, String userauthid, String message, String usernickname, String userprofile) {
         Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitExService service = client.create(RetrofitExService.class);
-        Call<Data> call = service.addPick(latitude, longitude, userauthid, message, usernickname);
+        Call<Data> call = service.addPick(latitude, longitude, userauthid, message, usernickname, userprofile);
         call.enqueue(new Callback<Data>() {
             @Override
             public void onResponse(Call<Data> call, retrofit2.Response<Data> response) {

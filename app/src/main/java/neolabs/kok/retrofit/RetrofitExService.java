@@ -31,13 +31,16 @@ public interface RetrofitExService {
     Call<Data> signinUserInfo(@Query("email") String email, @Query("password") String password);
 
     @GET("addpick")
-    Call<Data> addPick(@Query("latitude") String latitude, @Query("longitude") String longitude, @Query("userauthid") String userauthid, @Query("message") String message, @Query("usernickname") String usernickname);
+    Call<Data> addPick(@Query("latitude") String latitude, @Query("longitude") String longitude, @Query("userauthid") String userauthid, @Query("message") String message, @Query("usernickname") String usernickname, @Query("profileimage") String profileimage);
 
     @GET("getpicknearby")
     Call<List<KokData>> getPick(@Query("latitude") String latitude, @Query("longitude") String longitude);
 
     @GET("getpickmy")
     Call<List<KokData>> getmyPick(@Query("userauthid") String userauthid);
+
+    @GET("getuserinfo")
+    Call<Data> getuserInfo(@Query("useruid") String useruid);
 
     @GET("deletepickmy")
     Call<List<KokData>> deletemyPick(@Query("deleteuseruid") String deleteuseruid);

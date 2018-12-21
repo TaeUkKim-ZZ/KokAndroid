@@ -1186,7 +1186,7 @@ id percent
 id pin
 id profile2
 id profile_image
-id profile_image2
+id profile_image3
 id progress_bar
 id progress_circular
 id progress_horizontal

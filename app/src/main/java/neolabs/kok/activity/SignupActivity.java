@@ -174,7 +174,10 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Profile> call, Response<Profile> response) {
                 if(response.isSuccessful()) {
-
+                    SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("profileImage", response.body().getFilename());
+                    editor.apply();
                 }
             }
 

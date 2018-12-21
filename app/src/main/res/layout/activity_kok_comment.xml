@@ -6,16 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activity.ProfileActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image2"
+    <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image3"
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:src="@mipmap/ic_launcher_round"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,12 +20,12 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/profile_image2"
+        android:layout_toRightOf="@+id/profile_image3"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
-        android:text="김태욱"
-        app:layout_constraintStart_toEndOf="@+id/profile_image2"
+        android:text=""
+        app:layout_constraintStart_toEndOf="@+id/profile_image3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -36,12 +33,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
-        android:layout_toRightOf="@+id/profile_image2"
+        android:layout_toRightOf="@+id/profile_image3"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="20dp"
         android:maxLines="4"
         android:lines="4"
-        android:text="간단한 메모를 남기는 내용이 여기에 있을겁니다. ㄴㅇ렁ㅇㄴ란ㅇ럼나이ㅓㄹ마ㅣㄴ;어라ㅣㄴㅇ머라ㅣㄴㅁ어린머아란ㅇ미ㅓㅏㅣㄴㅇ라ㅣㄴasdfdfssasfd" />
+        android:text="" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/commentrecyclerView"

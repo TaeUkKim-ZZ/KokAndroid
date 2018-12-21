@@ -8,21 +8,31 @@ public class Data {
     @SerializedName("_id")
     @Expose
     private String id;
+
     @SerializedName("email")
     @Expose
     private String email;
+
     @SerializedName("password")
     @Expose
     private String password;
+
     @SerializedName("gender")
     @Expose
     private String gender;
+
     @SerializedName("nickname")
     @Expose
     private String nickname;
+
     @SerializedName("introduce")
     @Expose
     private String introduce;
+
+    @SerializedName("profileimage")
+    @Expose
+    private String profileimage;
+
     @SerializedName("__v")
     @Expose
     private Integer v;
@@ -66,6 +76,15 @@ public class Data {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+    public String getProfileimage() {
+        return profileimage;
+    }
+
+    public void setProfileimage(String profileimage) {
+        this.profileimage = profileimage;
+    }
+
 
     public String getIntroduce() {
         return introduce;

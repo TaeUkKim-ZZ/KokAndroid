@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import net.daum.mf.map.api.CalloutBalloonAdapter;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     String[] usernamearray = new String[99999];
     String[] kokidarray = new String[99999];
     String[] kokcomment = new String[99999];
+    String[] profilelinkArray = new String[99999];
 
     private final int PERMISSIONS_ACCESS_FINE_LOCATION = 1000;
     private final int PERMISSIONS_ACCESS_COARSE_LOCATION = 1001;
@@ -112,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                             kokidarray[i] = response.body().get(i).getId();
                             kokcomment[i] = response.body().get(i).getMessage();
                             usernamearray[i] = response.body().get(i).getUsernickname();
+                            profilelinkArray[i] = response.body().get(i).getProfileimage();
 
                             MapPOIItem marker = new MapPOIItem();
                             List<Double> point = response.body().get(i).getLocation().getCoordinates();
@@ -203,7 +208,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         @Override
         public View getCalloutBalloon(MapPOIItem poiItem) {
-            ((ImageView) mCalloutBalloon.findViewById(R.id.badge)).setImageResource(R.mipmap.ic_launcher);
+
+            //ImageView profileImage = (ImageView) mCalloutBalloon.findViewById(R.id.badge);
             ((TextView) mCalloutBalloon.findViewById(R.id.title3)).setText(poiItem.getItemName());
             ((TextView) mCalloutBalloon.findViewById(R.id.desc)).setText(kokcomment[poiItem.getTag()]);
             return mCalloutBalloon;
@@ -274,7 +280,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Intent intent = new Intent(MainActivity.this, KokCommentActivity.class);
         intent.putExtra("username", usernamearray[mapPOIItem.getTag()]);
         intent.putExtra("kokcomment", kokcomment[mapPOIItem.getTag()]);
-        intent.putExtra("userauthid", kokidarray[mapPOIItem.getTag()]); //유저가 아니라 콕 고유 authid이다.... 착각 ㄴㄴ
+        intent.putExtra("userauthid", userauthidarray[mapPOIItem.getTag()]); //유저가 아니라 콕 고유 authid이다.... 착각 ㄴㄴ
+        intent.putExtra("kokidarray", kokidarray[mapPOIItem.getTag()]);
+        intent.putExtra("profileImage", profilelinkArray[mapPOIItem.getTag()]);
         startActivity(intent);
     }
 
