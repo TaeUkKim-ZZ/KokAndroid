@@ -59,7 +59,6 @@ public class KokCommentActivity extends AppCompatActivity {
     String[] commentsid= new String[99999];
 
     List<KokCommentItem> items = new ArrayList<>();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,9 +86,6 @@ public class KokCommentActivity extends AppCompatActivity {
         getuserInfo(intent.getStringExtra("userauthid"));
         kokcomment.setText(intent.getStringExtra("kokcomment"));
 
-        /*newnickname.setText(intent.getStringExtra("username"));
-        profileImagelink = intent.getStringExtra("profileImage");*/
-
         kokid = intent.getStringExtra("kokidarray");
 
         Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
@@ -110,25 +106,10 @@ public class KokCommentActivity extends AppCompatActivity {
                             } else {
                                 items.add(new KokCommentItem(comments.get(low).getContents(), comments.get(low).getAuthorauthid(), false));
                             }
-                            /*getCommentUserInfo(comments.get(i).getAuthorauthid(), userinfo -> {
-                                List<KokCommentItem> items2 = new ArrayList<>();
-                                //Log.d("kokuserprofile", userinfo[0] + userinfo[1]);
-
-                                if (comments.get(low).getAuthorauthid().equals(myselfauthid)) {
-                                        items.add(new KokCommentItem(comments.get(low).getContents(), userinfo[0], userinfo[1], comments.get(low).getCommentDate(), true));
-                                } else {
-                                        items.add(new KokCommentItem(comments.get(low).getContents(), userinfo[0], userinfo[1], comments.get(low).getCommentDate(), false));
-                                }
-
-
-
-                                commentsid[low] = comments.get(low).getId();
-                            });*/
+                            commentsid[low] = comments.get(low).getId();
                         }
 
                         recyclerView.setAdapter(mAdapter);
-
-                        //Toast.makeText(KokCommentActivity.this, "댓글이 정상적으로 등록되었습니다.", Toast.LENGTH_SHORT).show();
                         break;
                     case 409:
                         Toast.makeText(KokCommentActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
@@ -166,24 +147,8 @@ public class KokCommentActivity extends AppCompatActivity {
                                     } else {
                                         items.add(new KokCommentItem(comments.get(low).getContents(), comments.get(low).getAuthorauthid(), false));
                                     }
-                                    /*getCommentUserInfo(comments.get(i).getAuthorauthid(), userinfo -> {
-                                        Log.d("kokuserprofile", comments.get(low).getCommentDate());
-                                        if (comments.get(low).getAuthorauthid().equals(myselfauthid)) {
-                                            items.add(new KokCommentItem(comments.get(low).getContents(), userinfo[0], userinfo[1], comments.get(low).getCommentDate(), true));
-                                        } else {
-                                            items.add(new KokCommentItem(comments.get(low).getContents(), userinfo[0], userinfo[1], comments.get(low).getCommentDate(), false));
-                                        }
-                                        commentsid[low] = comments.get(low).getId();
-                                    });*/
-                                    //Log.d("userinfo", userinfo[0] + userinfo[1]);
-
-                                    //Log.d("commentsize", comments.get(i).getContents());
-                                    //Log.d("commentsize", comments.get(i).getAuthorusernickname());
-                                    //Log.d("commentsize", comments.get(i).getAuthorauthid());
-
+                                    commentsid[low] = comments.get(low).getId();
                                 }
-
-                                //Log.d("insideitems", items.toString());
 
                                 mAdapter.notifyDataSetChanged();
                                 commentview.setText("");
@@ -259,7 +224,6 @@ public class KokCommentActivity extends AppCompatActivity {
                                     .apply(RequestOptions.circleCropTransform())
                                     .into(profileImage);
                         }
-                        //Toast.makeText(KokCommentActivity.this, "댓글이 정상적으로 등록되었습니다.", Toast.LENGTH_SHORT).show();
                         break;
                     case 409:
                         Toast.makeText(KokCommentActivity.this, "에러2가 발생하였습니다.", Toast.LENGTH_SHORT).show();
@@ -300,28 +264,8 @@ public class KokCommentActivity extends AppCompatActivity {
                         .into(myViewHolder.profileImage);
                 myViewHolder.kokuser.setText(userinfo[0]);
             });
-            /*Glide.with(KokCommentActivity.this)
-                    .load(RetrofitExService.BASE_URL + "images/" + items.get(position).kokuserprofile)
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(myViewHolder.profileImage);*/
 
-
-            //Log.d("kokuserprofile2", RetrofitExService.BASE_URL + "images/" + items.get(position).kokuserprofile);
-            /*if(!items.get(position).kokuserprofile.equals("default")) {
-                Glide.with(KokCommentActivity.this)
-                        .asBitmap()
-                        .load(RetrofitExService.BASE_URL + "images/" + items.get(position).kokuserprofile)
-                        .into(new SimpleTarget<Bitmap>() {
-                            @Override
-                            public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
-                                myViewHolder.profileImage.setImageBitmap(resource);
-                            }
-                        });
-            }*/
-
-            //myViewHolder.profileImage.setImageResource(R.drawable.custom_callout_balloon);
             myViewHolder.koktext.setText(items.get(position).koktext);
-            //myViewHolder.kokuser.setText(items.get(position).kokuser);
             myViewHolder.deletebuttona.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
