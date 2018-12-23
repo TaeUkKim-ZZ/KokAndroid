@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\kamma\\Desktop\\Dev\\KokAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+            "outputFile": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\kamma\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\9f56e0106f1394aa7ff88d7c5795c83c\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/f959e48bedb8ae63124e43bf889ee30d/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\kamma\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\8fae800d572f45e80ac89abf4af1fddf\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/5496d12dbf46160327fa3e92730ddee7/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

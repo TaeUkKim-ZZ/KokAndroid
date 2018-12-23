@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\kamma\\Desktop\\Dev\\KokAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v16\\values-v16.xml",
+            "outputFile": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\kamma\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\8fae800d572f45e80ac89abf4af1fddf\\res\\values-v16\\values-v16.xml",
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/5496d12dbf46160327fa3e92730ddee7/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\kamma\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0d4b07417fdef03e3b0ec17cb6a094ac\\res\\values-v16\\values-v16.xml",
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/174a401421525004c158c8653ef85df5/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
