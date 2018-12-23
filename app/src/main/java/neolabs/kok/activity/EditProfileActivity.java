@@ -50,7 +50,7 @@ public class EditProfileActivity extends AppCompatActivity {
     String introducestring;
     String findemail;
     LockClass getsha512 = new LockClass();
-    Uri imageUri = null; //초기값 따로정의
+    Uri imageUri = null; //초기값을 null로 따로 정의
     ImageView logoView;
 
     String mediaPath;

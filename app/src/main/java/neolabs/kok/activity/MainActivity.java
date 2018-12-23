@@ -27,6 +27,7 @@ import net.daum.mf.map.api.MapView;
 import java.util.ArrayList;
 import java.util.List;
 
+import neolabs.kok.data.Data;
 import neolabs.kok.sutff.GPSInfo;
 import neolabs.kok.R;
 import neolabs.kok.data.KokData;
@@ -112,27 +113,35 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                         //일단 콕들을 전부 다 지우고 시작한다.
                         mapView.removeAllPOIItems();
                         for(int i = 0; i < response.body().size(); i++) {
+                            final int low = i;
                             userauthidarray[i] = response.body().get(i).getUserauthid();
                             kokidarray[i] = response.body().get(i).getId();
                             kokcomment[i] = response.body().get(i).getMessage();
-                            usernamearray[i] = response.body().get(i).getUsernickname();
-                            profilelinkArray[i] = response.body().get(i).getProfileimage();
 
-                            MapPOIItem marker = new MapPOIItem();
-                            List<Double> point = response.body().get(i).getLocation().getCoordinates();
-                            marker.setItemName(response.body().get(i).getUsernickname() + "의 Kok!");
-                            marker.setTag(i);
-                            marker.setMapPoint(MapPoint.mapPointWithGeoCoord(point.get(1), point.get(0)));
+                            getCommentUserInfo(userauthidarray[i], new getUserCallback() {
+                                @Override
+                                public void setUserInfo(String[] userinfo) {
+                                    MapPOIItem marker = new MapPOIItem();
+                                    List<Double> point = response.body().get(low).getLocation().getCoordinates();
+                                    marker.setItemName(userinfo[0] + "의 Kok!");
+                                    marker.setTag(low);
+                                    marker.setMapPoint(MapPoint.mapPointWithGeoCoord(point.get(1), point.get(0)));
+                                    profilelinkArray[low] = userinfo[1];
 
-                            marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
+                                    marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
 
-                            marker.setCustomImageResourceId(R.drawable.custom_marker_red);
-                            marker.setCustomImageAutoscale(false);
-                            marker.setCustomImageAnchor(0.5f, 1.0f);
-                            mapView.addPOIItem(marker);
+                                    marker.setCustomImageResourceId(R.drawable.custom_marker_red);
+                                    marker.setCustomImageAutoscale(false);
+                                    marker.setCustomImageAnchor(0.5f, 1.0f);
+                                    mapView.addPOIItem(marker);
 
-                            Log.d("tag", String.format("%f", point.get(0)));
-                            point.clear();
+                                    Log.d("tag", String.format("%f", point.get(0)));
+                                    point.clear();
+                                }
+                            });
+
+                            //usernamearray[i] = response.body().get(i).getUsernickname();
+                            //profilelinkArray[i] = response.body().get(i).getProfileimage();
                         }
                         //출처: http://jekalmin.tistory.com/entry/Gson을-이용한-json을-객체에-담기 [jekalmin의 블로그]
                         break;
@@ -146,6 +155,38 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             @Override
             public void onFailure(@NonNull Call<List<KokData>> call, @NonNull Throwable t) {
+                Log.d("checkonthe", "error");
+            }
+        });
+    }
+
+    private interface getUserCallback {
+        void setUserInfo(String[] userinfo);
+    }
+
+    public void getCommentUserInfo(String userauth, final getUserCallback callback) {
+        final String[] userinfo = new String[2];
+        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        RetrofitExService service = client.create(RetrofitExService.class);
+        Call<Data> call = service.getuserInfo(userauth);
+        call.enqueue(new Callback<Data>() {
+            @Override
+            public void onResponse(@NonNull Call<Data> call, @NonNull retrofit2.Response<Data> response) {
+                switch (response.code()) {
+                    case 200:
+                        userinfo[0] = response.body().getNickname();
+                        userinfo[1] = response.body().getProfileimage();
+                        callback.setUserInfo(userinfo);
+                        break;
+                    case 409:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Data> call, @NonNull Throwable t) {
                 Log.d("checkonthe", "error");
             }
         });
@@ -208,7 +249,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         @Override
         public View getCalloutBalloon(MapPOIItem poiItem) {
-
             //ImageView profileImage = (ImageView) mCalloutBalloon.findViewById(R.id.badge);
             ((TextView) mCalloutBalloon.findViewById(R.id.title3)).setText(poiItem.getItemName());
             ((TextView) mCalloutBalloon.findViewById(R.id.desc)).setText(kokcomment[poiItem.getTag()]);

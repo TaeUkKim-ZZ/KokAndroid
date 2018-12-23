@@ -5,27 +5,32 @@
     build-mode="COLD"
     density="420dpi"
     format="10"
+    ir-eligibility="COMPATIBLE"
     plugin-version="3.2.1"
-    timestamp="1545410789229"
+    timestamp="1545544839325"
     token="8919892350331038717"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="1132" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="44" />
     <task
         name="verifier"
-        duration="0" />
+        duration="8" />
+
+    <artifact
+        location="/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+        type="SPLIT" />
 
     <build
         build-mode="FULL"
-        timestamp="1545409585237"
+        timestamp="1545544666468"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
@@ -69,27 +74,12 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="FIELD_REMOVED"
-        timestamp="1545410674196"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1545544839325"
         verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
-            type="SPLIT" />
         <artifact
             location="/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
             type="SPLIT" />
     </build>
-    <build
-        build-mode="COLD"
-        timestamp="1545410753116"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="/Users/kimtaeuk/Documents/Dev/Android/Kok/app/build/intermediates/resources/instant-run/debug/resources-debug.apk"
-            type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        timestamp="1545410789229"
-        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>
