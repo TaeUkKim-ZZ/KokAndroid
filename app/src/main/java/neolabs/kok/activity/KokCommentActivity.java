@@ -263,43 +263,43 @@ public class KokCommentActivity extends AppCompatActivity {
                         .apply(RequestOptions.circleCropTransform())
                         .into(myViewHolder.profileImage);
                 myViewHolder.kokuser.setText(userinfo[0]);
-            });
+                myViewHolder.koktext.setText(items.get(position).koktext);
 
-            myViewHolder.koktext.setText(items.get(position).koktext);
-            myViewHolder.deletebuttona.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    items.remove(position);
-                    mAdapter.notifyDataSetChanged();
-                    Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
-                    RetrofitExService service = client.create(RetrofitExService.class);
-                    Call<KokData> call = service.deleteComment(kokid, commentsid[position]);
-                    call.enqueue(new Callback<KokData>() {
-                        @Override
-                        public void onResponse(@NonNull Call<KokData> call, @NonNull Response<KokData> response) {
-                            switch (response.code()) {
-                                case 200:
-                                    Toast.makeText(KokCommentActivity.this, "댓글이 정상적으로 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                                    break;
-                                case 409:
-                                    Toast.makeText(KokCommentActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
-                                    break;
-                                default:
-                                    Log.e("asdf", response.code() + "");
-                                    break;
+                myViewHolder.deletebuttona.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        items.remove(position);
+                        mAdapter.notifyDataSetChanged();
+                        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+                        RetrofitExService service = client.create(RetrofitExService.class);
+                        Call<KokData> call = service.deleteComment(kokid, commentsid[position]);
+                        call.enqueue(new Callback<KokData>() {
+                            @Override
+                            public void onResponse(@NonNull Call<KokData> call, @NonNull Response<KokData> response) {
+                                switch (response.code()) {
+                                    case 200:
+                                        Toast.makeText(KokCommentActivity.this, "댓글이 정상적으로 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    case 409:
+                                        Toast.makeText(KokCommentActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    default:
+                                        Log.e("asdf", response.code() + "");
+                                        break;
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onFailure(@NonNull Call<KokData> call, @NonNull Throwable t) {
-                            Log.d("checkonthe", "error");
-                        }
-                    });
+                            @Override
+                            public void onFailure(@NonNull Call<KokData> call, @NonNull Throwable t) {
+                                Log.d("checkonthe", "error");
+                            }
+                        });
+                    }
+                });
+                if(!items.get(position).ismycomment) {
+                    myViewHolder.deletebuttona.setVisibility(View.GONE);
                 }
             });
-            if(!items.get(position).ismycomment) {
-                myViewHolder.deletebuttona.setVisibility(View.GONE);
-            }
         }
 
         @Override
