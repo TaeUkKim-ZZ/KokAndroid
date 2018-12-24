@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -62,6 +61,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     static Activity activity;
 
+    //외부에서 Activity 끝내기
     public static void finishThis() {
         if (activity != null) activity.finish();
     }

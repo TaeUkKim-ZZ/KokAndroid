@@ -1,6 +1,5 @@
 package neolabs.kok.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -27,8 +26,6 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import neolabs.kok.R;
 import neolabs.kok.sutff.RecyclerItemClickListener;
 import neolabs.kok.data.KokData;

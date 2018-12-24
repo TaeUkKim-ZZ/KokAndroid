@@ -4,7 +4,7 @@
             "outputFile": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/5496d12dbf46160327fa3e92730ddee7/res/values-large-v4/values-large-v4.xml",
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/8e5e723c4333d5d7efea978362af3c00/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/f959e48bedb8ae63124e43bf889ee30d/res/values-large-v4/values-large-v4.xml",
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/313d85c1423ff39ec2e6ea67a031dad4/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

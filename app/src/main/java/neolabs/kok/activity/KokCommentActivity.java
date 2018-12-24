@@ -62,13 +62,13 @@ public class KokCommentActivity extends AppCompatActivity {
     String profileImagelink;
 
     RecyclerAdapter mAdapter;
-    //String[] commentsid= new String[99999];
     List<String> commentsid = new ArrayList<>();
 
     List<KokCommentItem> items = new ArrayList<>();
 
     static Activity activity;
 
+    //외부에서 Activity 끝내기
     public static void finishThis() {
         if (activity != null) activity.finish();
     }
