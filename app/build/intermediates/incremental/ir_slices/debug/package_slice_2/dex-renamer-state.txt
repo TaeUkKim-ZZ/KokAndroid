@@ -1,4 +1,4 @@
-#Mon Dec 24 09:27:07 KST 2018
+#Mon Dec 24 16:52:00 KST 2018
 base.0=/Users/kimtaeuk/Documents/Dev/Android/Kok\!/app/build/intermediates/transforms/dexMerger/debug/2
 path.0=classes.dex
 renamed.0=classes.dex

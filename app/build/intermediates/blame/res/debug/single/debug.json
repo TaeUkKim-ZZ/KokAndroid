@@ -21,7 +21,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_light_focused.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_text_light_focused.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_text_light_focused.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -37,7 +37,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_dark_focused.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_text_dark_focused.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_text_dark_focused.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_abc_tab_indicator_material.xml.flat",
@@ -125,7 +125,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-hdpi-v4/googleg_standard_color_18.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-hdpi-v4/googleg_standard_color_18.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
@@ -225,7 +225,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/color_common_google_signin_btn_tint.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/color/common_google_signin_btn_tint.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/color/common_google_signin_btn_tint.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/interpolator_mtrl_fast_out_slow_in.xml.flat",
@@ -281,7 +281,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xxhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xxhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout-watch-v20_abc_alert_dialog_title_material.xml.flat",
@@ -401,7 +401,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-mdpi-v4/googleg_standard_color_18.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-mdpi-v4/googleg_standard_color_18.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/color_mtrl_tabs_icon_color_selector_colored.xml.flat",
@@ -465,7 +465,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_dark_focused.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_icon_dark_focused.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_icon_dark_focused.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/color_abc_background_cache_hint_selector_material_dark.xml.flat",
@@ -521,7 +521,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_disabled.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_icon_disabled.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_icon_disabled.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout_activity_add_kok.xml.flat",
@@ -565,7 +565,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-hdpi-v4/googleg_disabled_color_18.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-hdpi-v4/googleg_disabled_color_18.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/anim_abc_slide_out_bottom.xml.flat",
@@ -577,7 +577,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xxhdpi-v4/googleg_standard_color_18.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xxhdpi-v4/googleg_standard_color_18.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout_notification_media_cancel_action.xml.flat",
@@ -717,7 +717,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-mdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-mdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
@@ -733,7 +733,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-mdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-mdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout_notification_action_tombstone.xml.flat",
@@ -749,7 +749,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_common_full_open_on_phone.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xhdpi-v4/common_full_open_on_phone.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xhdpi-v4/common_full_open_on_phone.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout_notification_action.xml.flat",
@@ -777,7 +777,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-hdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-hdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_star_black_48dp.png.flat",
@@ -797,7 +797,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-mdpi-v4/googleg_disabled_color_18.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-mdpi-v4/googleg_disabled_color_18.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout-v21_notification_action.xml.flat",
@@ -885,7 +885,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_disabled.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_text_disabled.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_text_disabled.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/color-v23_design_tint_password_toggle.xml.flat",
@@ -1065,7 +1065,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_common_full_open_on_phone.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-hdpi-v4/common_full_open_on_phone.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-hdpi-v4/common_full_open_on_phone.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/anim-v21_design_bottom_sheet_slide_out.xml.flat",
@@ -1081,7 +1081,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
@@ -1125,7 +1125,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xxhdpi-v4/googleg_disabled_color_18.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xxhdpi-v4/googleg_disabled_color_18.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout_select_dialog_singlechoice_material.xml.flat",
@@ -1153,7 +1153,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/anim_abc_popup_exit.xml.flat",
@@ -1169,7 +1169,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xxhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xxhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_longpressed_holo.9.png.flat",
@@ -1193,7 +1193,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-mdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-mdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout_notification_template_lines_media.xml.flat",
@@ -1305,11 +1305,11 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_light_normal.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_text_light_normal.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_text_light_normal.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_light.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_icon_light.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_icon_light.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_abc_ratingbar_small_material.xml.flat",
@@ -1325,7 +1325,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_light.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_text_light.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_text_light.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-watch-v20_abc_dialog_material_background.xml.flat",
@@ -1381,7 +1381,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xxhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xxhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
@@ -1409,11 +1409,11 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xhdpi-v4/googleg_standard_color_18.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xhdpi-v4/googleg_standard_color_18.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_light_normal.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_icon_light_normal.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_icon_light_normal.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_text_select_handle_right_mtrl_light.png.flat",
@@ -1441,7 +1441,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xhdpi-v4/googleg_disabled_color_18.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xhdpi-v4/googleg_disabled_color_18.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_focused_holo.9.png.flat",
@@ -1637,7 +1637,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/color_common_google_signin_btn_text_dark.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/color/common_google_signin_btn_text_dark.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/color/common_google_signin_btn_text_dark.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_ic_star_black_36dp.png.flat",
@@ -1721,7 +1721,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_dark.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_icon_dark.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_icon_dark.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
@@ -1729,7 +1729,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/color_common_google_signin_btn_text_light.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/color/common_google_signin_btn_text_light.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/color/common_google_signin_btn_text_light.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout_abc_action_menu_layout.xml.flat",
@@ -1749,7 +1749,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-hdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-hdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout_mtrl_layout_snackbar.xml.flat",
@@ -1801,7 +1801,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_dark_normal.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_text_dark_normal.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_text_dark_normal.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/layout_design_navigation_menu.xml.flat",
@@ -1861,7 +1861,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/animator_mtrl_chip_state_list_anim.xml.flat",
@@ -1869,7 +1869,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xxhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xxhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_text_select_handle_right_mtrl_light.png.flat",
@@ -1957,7 +1957,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_dark.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_text_dark.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_text_dark.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-v21_avd_hide_password.xml.flat",
@@ -1997,7 +1997,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-mdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-mdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/color-v23_abc_tint_spinner.xml.flat",
@@ -2013,7 +2013,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-hdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-hdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_custom_marker_red.png.flat",
@@ -2093,11 +2093,11 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-hdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-hdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_light_focused.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_icon_light_focused.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_icon_light_focused.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
@@ -2141,7 +2141,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable-xhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable-xhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/color_abc_primary_text_disable_only_material_dark.xml.flat",
@@ -2209,7 +2209,7 @@
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
-        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/drawable/common_google_signin_btn_icon_dark_normal.xml"
+        "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/drawable/common_google_signin_btn_icon_dark_normal.xml"
     },
     {
         "merged": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/res/merged/debug/color-v23_abc_color_highlight_material.xml.flat",

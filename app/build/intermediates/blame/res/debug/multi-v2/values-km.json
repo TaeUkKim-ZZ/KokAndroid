@@ -4,24 +4,7 @@
             "outputFile": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml",
             "map": [
                 {
-                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/firebase-messaging-12.0.1.aar/e46b7f9f6e21cf83b440ed6a2c937842/res/values-km/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "205",
-                        "endColumns": "100",
-                        "endOffsets": "305"
-                    },
-                    "to": {
-                        "startLines": "47",
-                        "startColumns": "4",
-                        "startOffsets": "5498",
-                        "endColumns": "104",
-                        "endOffsets": "5598"
-                    }
-                },
-                {
-                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/values-km/values.xml",
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/values-km/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -35,6 +18,23 @@
                         "startOffsets": "2799,2903,3090,3213,3320,3541,3667,3818,4164,4381,4489,4691,4818,5022,5210,5304,5392",
                         "endColumns": "103,186,122,106,220,125,150,137,216,107,201,126,203,187,93,87,105",
                         "endOffsets": "2898,3085,3208,3315,3536,3662,3813,3951,4376,4484,4686,4813,5017,5205,5299,5387,5493"
+                    }
+                },
+                {
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/firebase-messaging-17.3.4.aar/d0a5742de639a3f89b8b2799b3d5ad43/res/values-km/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "205",
+                        "endColumns": "100",
+                        "endOffsets": "305"
+                    },
+                    "to": {
+                        "startLines": "47",
+                        "startColumns": "4",
+                        "startOffsets": "5498",
+                        "endColumns": "104",
+                        "endOffsets": "5598"
                     }
                 },
                 {
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/37fe2cebb48e63f364048bb8e8976fb8/res/values-km/values.xml",
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/22a56ed69c4dbfbe2a60ccd6fd358840/res/values-km/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

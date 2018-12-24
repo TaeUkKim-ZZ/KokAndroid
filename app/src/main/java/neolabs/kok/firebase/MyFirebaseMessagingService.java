@@ -4,12 +4,14 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Map;
@@ -17,7 +19,7 @@ import java.util.Map;
 import neolabs.kok.R;
 import neolabs.kok.activity.MainActivity;
 
-public class MyFirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
+public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
 
     // 메시지 수신
@@ -27,9 +29,11 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
 
         Map<String, String> data = remoteMessage.getData();
         String title = data.get("title");
-        String messagae = data.get("content");
+        String message = data.get("content");
 
-        sendNotification(title, messagae);
+        Log.d("title", title);
+        Log.d("content", message);
+        sendNotification(title, message);
     }
 
     private void sendNotification(String title, String message) {
@@ -50,5 +54,16 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+    }
+
+    @Override
+    public void onNewToken(String token) {
+        Log.d(TAG, "Refreshed token: " + token);
+
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+
+        editor.putString("firebasetoken", token);
+        editor.apply();
     }
 }

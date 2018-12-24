@@ -21,6 +21,10 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+
 import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -133,52 +137,60 @@ public class SignupActivity extends AppCompatActivity {
 
     //서버에 사용자를 가입시켜준다.
     public void signintoserver(String email, String password, String gender, String introduce, String nickname) {
-        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
-        RetrofitExService service = client.create(RetrofitExService.class);
-        Call<Data> call = service.signupUserInfo(email, password, gender, nickname, introduce);
-        call.enqueue(new Callback<Data>() {
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(SignupActivity.this, new OnSuccessListener<InstanceIdResult>() {
             @Override
-            public void onResponse(@NonNull Call<Data> call, @NonNull retrofit2.Response<Data> response) {
-                switch (response.code()) {
-                    case 200:
-                        Data body = response.body();
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String newToken = instanceIdResult.getToken();
+                //Log.e("newToken", newToken);
+                Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+                RetrofitExService service = client.create(RetrofitExService.class);
+                Call<Data> call = service.signupUserInfo(email, password, gender, nickname, introduce, FirebaseInstanceId.getInstance().getToken());
+                call.enqueue(new Callback<Data>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Data> call, @NonNull retrofit2.Response<Data> response) {
+                        switch (response.code()) {
+                            case 200:
+                                Data body = response.body();
 
-                        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = pref.edit();
+                                SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = pref.edit();
 
-                        if(imageUri != null) {
-                            //POST로 다시 리스폰을 날린 이후에 값을 Sharedpreferences에 저장해준다.
-                            sendProfileImage(body.getId());
-                        } else {
-                            editor.putString("profileImage", "default");
+                                if(imageUri != null) {
+                                    //POST로 다시 리스폰을 날린 이후에 값을 Sharedpreferences에 저장해준다.
+                                    sendProfileImage(body.getId());
+                                } else {
+                                    editor.putString("profileImage", "default");
+                                }
+
+                                //Retrofit에서 받아온 데이터를 Sharedpreferences에 저장해준다.
+                                editor.putString("useremail", body.getEmail());
+                                editor.putString("userauthid", body.getId());
+                                editor.putString("gender", body.getGender());
+                                editor.putString("nickname", body.getNickname());
+                                editor.putString("introduce", body.getIntroduce());
+                                editor.putString("firebasetoken",  newToken);
+                                editor.apply();
+
+                                Toast.makeText(SignupActivity.this, "가입 완료", Toast.LENGTH_SHORT).show();
+
+                                //가입이 끝난 이후에 메인 엑티비티로 간다.
+                                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                LoginActivity.finishThis();
+                                startActivity(intent);
+                                finish();
+                                break;
+                            case 409:
+                                Toast.makeText(SignupActivity.this, "이미 존재하는 이메일입니다. 다른 이메일을 입력하여 주십시오.", Toast.LENGTH_SHORT).show();
+                            default:
+                                break;
                         }
+                    }
 
-                        //Retrofit에서 받아온 데이터를 Sharedpreferences에 저장해준다.
-                        editor.putString("useremail", body.getEmail());
-                        editor.putString("userauthid", body.getId());
-                        editor.putString("gender", body.getGender());
-                        editor.putString("nickname", body.getNickname());
-                        editor.putString("introduce", body.getIntroduce());
-                        editor.apply();
-
-                        Toast.makeText(SignupActivity.this, "가입 완료", Toast.LENGTH_SHORT).show();
-
-                        //가입이 끝난 이후에 메인 엑티비티로 간다.
-                        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                        LoginActivity.finishThis();
-                        startActivity(intent);
-                        finish();
-                        break;
-                    case 409:
-                        Toast.makeText(SignupActivity.this, "이미 존재하는 이메일입니다. 다른 이메일을 입력하여 주십시오.", Toast.LENGTH_SHORT).show();
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Data> call, Throwable t) {
-                Log.d("checkonthe", "error");
+                    @Override
+                    public void onFailure(Call<Data> call, Throwable t) {
+                        Log.d("checkonthe", "error");
+                    }
+                });
             }
         });
 

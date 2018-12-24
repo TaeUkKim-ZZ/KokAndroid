@@ -22,7 +22,7 @@ public interface RetrofitExService {
     String BASE_URL = "https://kok1.herokuapp.com/";
 
     @GET("user/signup")
-    Call<Data> signupUserInfo(@Query("email") String email, @Query("password") String password, @Query("gender") String gender, @Query("nickname") String nickname, @Query("introduce") String introduce);
+    Call<Data> signupUserInfo(@Query("email") String email, @Query("password") String password, @Query("gender") String gender, @Query("nickname") String nickname, @Query("introduce") String introduce, @Query("firebasetoken") String firebasetoken);
 
     @GET("edituserinfo")
     Call<Data> EditUserInfo(@Query("useremail") String useremail, @Query("password") String password, @Query("gender") String gender, @Query("nickname") String nickname, @Query("introduce") String introduce);

@@ -4,23 +4,6 @@
             "outputFile": "/Users/kimtaeuk/Documents/Dev/Android/Kok!/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-lo/values-lo.xml",
             "map": [
                 {
-                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/f0e2dda69d6b10656d7e3cd5151ef107/res/values-lo/values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "245,351,553,681,786,997,1120,1254,1395,1606,1709,1906,2033,2263,2450,2544,2639",
-                        "endColumns": "105,201,127,104,210,122,133,140,210,102,196,126,229,186,93,94,109",
-                        "endOffsets": "350,552,680,785,996,1119,1253,1394,1605,1708,1905,2032,2262,2449,2543,2638,2748"
-                    },
-                    "to": {
-                        "startLines": "29,30,31,32,33,34,35,36,38,39,40,41,42,43,44,45,46",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "2755,2865,3067,3199,3308,3519,3646,3784,4120,4331,4438,4635,4766,4996,5187,5285,5384",
-                        "endColumns": "109,201,131,108,210,126,137,144,210,106,196,130,229,190,97,98,113",
-                        "endOffsets": "2860,3062,3194,3303,3514,3641,3779,3924,4326,4433,4630,4761,4991,5182,5280,5379,5493"
-                    }
-                },
-                {
                     "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/e163f62bbbe398549c9b404c4d42913f/res/values-lo/values-lo.xml",
                     "from": {
                         "startLines": "2",
@@ -35,6 +18,23 @@
                         "startOffsets": "5683",
                         "endColumns": "100",
                         "endOffsets": "5779"
+                    }
+                },
+                {
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/eded0d77fdf730784127e58c697d58dc/res/values-lo/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,351,553,681,786,997,1120,1254,1395,1606,1709,1906,2033,2263,2450,2544,2639",
+                        "endColumns": "105,201,127,104,210,122,133,140,210,102,196,126,229,186,93,94,109",
+                        "endOffsets": "350,552,680,785,996,1119,1253,1394,1605,1708,1905,2032,2262,2449,2543,2638,2748"
+                    },
+                    "to": {
+                        "startLines": "29,30,31,32,33,34,35,36,38,39,40,41,42,43,44,45,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2755,2865,3067,3199,3308,3519,3646,3784,4120,4331,4438,4635,4766,4996,5187,5285,5384",
+                        "endColumns": "109,201,131,108,210,126,137,144,210,106,196,130,229,190,97,98,113",
+                        "endOffsets": "2860,3062,3194,3303,3514,3641,3779,3924,4326,4433,4630,4761,4991,5182,5280,5379,5493"
                     }
                 },
                 {
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/37fe2cebb48e63f364048bb8e8976fb8/res/values-lo/values.xml",
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/22a56ed69c4dbfbe2a60ccd6fd358840/res/values-lo/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -72,7 +72,7 @@
                     }
                 },
                 {
-                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/firebase-messaging-12.0.1.aar/e46b7f9f6e21cf83b440ed6a2c937842/res/values-lo/values.xml",
+                    "source": "/Users/kimtaeuk/.gradle/caches/transforms-1/files-1.1/firebase-messaging-17.3.4.aar/d0a5742de639a3f89b8b2799b3d5ad43/res/values-lo/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
