@@ -1,5 +1,6 @@
 package neolabs.kok.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,12 @@ public class LoginActivity extends AppCompatActivity {
     String passwordstring;
     String encryptedstring;
     LockClass getsha512 = new LockClass();
+
+    static Activity activity;
+
+    public static void finishThis() {
+        if (activity != null) activity.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("gender", body.getGender());
                         editor.putString("nickname", body.getNickname());
                         editor.putString("introduce", body.getIntroduce());
+                        editor.putString("profileImage", body.getProfileimage());
                         editor.apply();
 
                         Toast.makeText(LoginActivity.this, "로그인 완료", Toast.LENGTH_SHORT).show();

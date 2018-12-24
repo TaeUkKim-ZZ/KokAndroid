@@ -29,10 +29,12 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="neolabs.kok.activity.MainActivity" />
         <activity android:name="neolabs.kok.activity.LoginActivity" />
         <activity android:name="neolabs.kok.activity.SignupActivity" />
-        <activity android:name="neolabs.kok.activity.MainActivity" />
-        <activity android:name="neolabs.kok.activity.SplashActivity" >
+        <activity
+            android:name="neolabs.kok.activity.SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,6 +46,7 @@
         <activity android:name="neolabs.kok.activity.KokCommentActivity" />
         <activity android:name="neolabs.kok.activity.EditProfileActivity" />
         <activity android:name="neolabs.kok.activity.ChatlistActivity" />
+        <activity android:name="neolabs.kok.activity.MyKokDetailActivity" />
 
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"

@@ -1,11 +1,16 @@
 package neolabs.kok.activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,12 +63,19 @@ public class SignupActivity extends AppCompatActivity {
 
     String mediaPath;
 
+    static Activity activity;
+
+    public static void finishThis() {
+        if (activity != null) activity.finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
         setView();
+        setPermission();
 
         signupcomplete = findViewById(R.id.email_signup_button2);
         signupcomplete.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +118,19 @@ public class SignupActivity extends AppCompatActivity {
         profileImage = findViewById(R.id.image_logo);
     }
 
+    public void setPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        1);
+            }
+        }
+    }
+
+
     //서버에 사용자를 가입시켜준다.
     public void signintoserver(String email, String password, String gender, String introduce, String nickname) {
         Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
@@ -118,15 +143,17 @@ public class SignupActivity extends AppCompatActivity {
                     case 200:
                         Data body = response.body();
 
+                        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = pref.edit();
+
                         if(imageUri != null) {
                             //POST로 다시 리스폰을 날린 이후에 값을 Sharedpreferences에 저장해준다.
-                            Log.d("profilelog", body.toString());
                             sendProfileImage(body.getId());
+                        } else {
+                            editor.putString("profileImage", "default");
                         }
 
                         //Retrofit에서 받아온 데이터를 Sharedpreferences에 저장해준다.
-                        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = pref.edit();
                         editor.putString("useremail", body.getEmail());
                         editor.putString("userauthid", body.getId());
                         editor.putString("gender", body.getGender());
@@ -138,13 +165,13 @@ public class SignupActivity extends AppCompatActivity {
 
                         //가입이 끝난 이후에 메인 엑티비티로 간다.
                         Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                        LoginActivity.finishThis();
                         startActivity(intent);
                         finish();
                         break;
                     case 409:
                         Toast.makeText(SignupActivity.this, "이미 존재하는 이메일입니다. 다른 이메일을 입력하여 주십시오.", Toast.LENGTH_SHORT).show();
                     default:
-                        Log.e("asdf", response.code() + "");
                         break;
                 }
             }
@@ -159,7 +186,6 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void sendProfileImage(String userauth) {
-        Log.d("ispost?", mediaPath);
         File file = new File(mediaPath);
 
         HashMap<String, Object> input = new HashMap<>();

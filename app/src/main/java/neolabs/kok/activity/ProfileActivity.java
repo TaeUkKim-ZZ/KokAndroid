@@ -1,6 +1,7 @@
 package neolabs.kok.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -57,6 +58,12 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
 
     ImageView profileImage;
     String profileImageUri;
+
+    static Activity activity;
+
+    public static void finishThis() {
+        if (activity != null) activity.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,12 +174,16 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
         String profilelink = pref.getString("profileImage",  null);
 
         //나중에 로드중인 GIF로 바꿔주자.
-        profileImage.setImageResource(R.mipmap.ic_launcher_round);
 
-        Glide.with(ProfileActivity.this)
-                .load(RetrofitExService.BASE_URL + "images/" + profilelink)
-                .apply(RequestOptions.circleCropTransform())
-                .into(profileImage);
+
+        if(profileImage.equals("default")) {
+            profileImage.setImageResource(R.mipmap.ic_launcher_round);
+        } else {
+            Glide.with(ProfileActivity.this)
+                    .load(RetrofitExService.BASE_URL + "images/" + profilelink)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(profileImage);
+        }
     }
 
     //수정후 다시 화면을 띄울때 반영을 해준다.
@@ -183,6 +194,7 @@ public class ProfileActivity extends AppCompatActivity implements SwipeRefreshLa
         String nickname = pref.getString("nickname", "");
         String introduce = pref.getString("introduce", "");
         String profilelink = pref.getString("profileImage", "");
+        Log.d("seeprofilelink", profilelink);
 
         putusername.setText(nickname);
         putintroduce.setText(introduce);

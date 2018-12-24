@@ -1,7 +1,13 @@
 package neolabs.kok.activity;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,9 +62,16 @@ public class KokCommentActivity extends AppCompatActivity {
     String profileImagelink;
 
     RecyclerAdapter mAdapter;
-    String[] commentsid= new String[99999];
+    //String[] commentsid= new String[99999];
+    List<String> commentsid = new ArrayList<>();
 
     List<KokCommentItem> items = new ArrayList<>();
+
+    static Activity activity;
+
+    public static void finishThis() {
+        if (activity != null) activity.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +119,7 @@ public class KokCommentActivity extends AppCompatActivity {
                             } else {
                                 items.add(new KokCommentItem(comments.get(low).getContents(), comments.get(low).getAuthorauthid(), false));
                             }
-                            commentsid[low] = comments.get(low).getId();
+                            commentsid.add(comments.get(low).getId());
                         }
 
                         recyclerView.setAdapter(mAdapter);
@@ -147,7 +160,7 @@ public class KokCommentActivity extends AppCompatActivity {
                                     } else {
                                         items.add(new KokCommentItem(comments.get(low).getContents(), comments.get(low).getAuthorauthid(), false));
                                     }
-                                    commentsid[low] = comments.get(low).getId();
+                                    commentsid.add(comments.get(low).getId());
                                 }
 
                                 mAdapter.notifyDataSetChanged();
@@ -268,32 +281,55 @@ public class KokCommentActivity extends AppCompatActivity {
                 myViewHolder.deletebuttona.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        items.remove(position);
-                        mAdapter.notifyDataSetChanged();
-                        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
-                        RetrofitExService service = client.create(RetrofitExService.class);
-                        Call<KokData> call = service.deleteComment(kokid, commentsid[position]);
-                        call.enqueue(new Callback<KokData>() {
-                            @Override
-                            public void onResponse(@NonNull Call<KokData> call, @NonNull Response<KokData> response) {
-                                switch (response.code()) {
-                                    case 200:
-                                        Toast.makeText(KokCommentActivity.this, "댓글이 정상적으로 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                                        break;
-                                    case 409:
-                                        Toast.makeText(KokCommentActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
-                                        break;
-                                    default:
-                                        Log.e("asdf", response.code() + "");
-                                        break;
-                                }
-                            }
+                        AlertDialog.Builder alt_bld = new AlertDialog.Builder(KokCommentActivity.this);
+                        alt_bld.setMessage("정말로 댓글을 삭제하시겠습니까?").setCancelable(
+                                false).setPositiveButton("네",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // 네 클릭
+                                        Retrofit client = new Retrofit.Builder().baseUrl(RetrofitExService.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+                                        RetrofitExService service = client.create(RetrofitExService.class);
+                                        Call<KokData> call = service.deleteComment(kokid, commentsid.get(position));
+                                        call.enqueue(new Callback<KokData>() {
+                                            @Override
+                                            public void onResponse(@NonNull Call<KokData> call, @NonNull Response<KokData> response) {
+                                                switch (response.code()) {
+                                                    case 200:
+                                                        Toast.makeText(KokCommentActivity.this, "댓글이 정상적으로 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                                                        break;
+                                                    case 409:
+                                                        Toast.makeText(KokCommentActivity.this, "에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                                                        break;
+                                                    default:
+                                                        Log.e("asdf", response.code() + "");
+                                                        break;
+                                                }
+                                            }
 
-                            @Override
-                            public void onFailure(@NonNull Call<KokData> call, @NonNull Throwable t) {
-                                Log.d("checkonthe", "error");
-                            }
-                        });
+                                            @Override
+                                            public void onFailure(@NonNull Call<KokData> call, @NonNull Throwable t) {
+                                                Log.d("checkonthe", "error");
+                                            }
+                                        });
+                                        items.remove(position);
+                                        commentsid.remove(position);
+                                        mAdapter.notifyDataSetChanged();
+                                    }
+                                }).setNegativeButton("아니오",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // 아니오 클릭. dialog 닫기.
+                                        dialog.cancel();
+                                    }
+                                });
+                        AlertDialog alert = alt_bld.create();
+
+                        // 대화창 아이콘 설정
+                        alert.setIcon(R.mipmap.ic_launcher);
+
+                        // 대화창 배경 색 설정
+                        //alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(255,62,79,92)));
+                        alert.show();
                     }
                 });
                 if(!items.get(position).ismycomment) {

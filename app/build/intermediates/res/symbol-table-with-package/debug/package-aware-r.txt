@@ -1073,7 +1073,6 @@ id center
 id center_horizontal
 id center_vertical
 id chains
-id chating
 id checkbox
 id chronometer
 id clip_horizontal
@@ -1334,6 +1333,7 @@ layout activity_edit_profile
 layout activity_kok_comment
 layout activity_login
 layout activity_main
+layout activity_my_kok_detail
 layout activity_profile
 layout activity_signup
 layout activity_splash
@@ -1752,6 +1752,7 @@ style Theme_AppCompat_Light_Dialog_Alert
 style Theme_AppCompat_Light_Dialog_MinWidth
 style Theme_AppCompat_Light_DialogWhenLarge
 style Theme_AppCompat_Light_NoActionBar
+style Theme_AppCompat_Light_NoActionBar_FullScreen
 style Theme_AppCompat_NoActionBar
 style Theme_Design
 style Theme_Design_BottomSheetDialog

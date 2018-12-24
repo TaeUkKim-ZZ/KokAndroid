@@ -1,5 +1,6 @@
 package neolabs.kok.activity;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -37,6 +38,12 @@ public class AddKokActivity extends AppCompatActivity {
     private boolean isPermission = false;
 
     private GPSInfo GPS;
+
+    static Activity activity;
+
+    public static void finishThis() {
+        if (activity != null) activity.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +104,7 @@ public class AddKokActivity extends AppCompatActivity {
     }
 
 
-    // 전화번호 권한 요청
+    // 위치 권한 요청
     private void callPermission() {
         // Check the SDK version and whether the permission is already granted or not.
         // SDK버전을 확인한후, 권한이 이미 주어져 있는지 아닌지를 확인해준다.
@@ -128,15 +135,11 @@ public class AddKokActivity extends AppCompatActivity {
             public void onResponse(Call<Data> call, retrofit2.Response<Data> response) {
                 switch (response.code()) {
                     case 200:
-                        Data body = response.body();
-                        Log.d("responsebody", body.toString());
-
                         Toast.makeText(AddKokActivity.this, "콕 저장 완료", Toast.LENGTH_SHORT).show();
                         break;
                     case 409:
                         Toast.makeText(AddKokActivity.this, "문제가 발생했습니다.", Toast.LENGTH_SHORT).show();
                     default:
-                        Log.e("asdf", response.code() + "");
                         break;
                 }
             }

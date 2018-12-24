@@ -27,13 +27,4 @@
         android:layout_marginRight="10dp"
         android:src="@mipmap/ic_launcher_round" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/chating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/addkok"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="10dp"
-        android:src="@mipmap/ic_launcher_round" />
 </RelativeLayout>

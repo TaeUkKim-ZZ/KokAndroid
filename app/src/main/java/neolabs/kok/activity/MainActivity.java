@@ -1,10 +1,13 @@
 package neolabs.kok.activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -44,8 +47,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     FloatingActionButton addkok;
     FloatingActionButton goChat;
 
-    List<KokItem> items = new ArrayList<>();
-
     String[] userauthidarray = new String[99999];
     String[] usernamearray = new String[99999];
     String[] kokidarray = new String[99999];
@@ -58,21 +59,30 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private boolean isAccessCoarseLocation = false;
     private boolean isPermission = false;
 
+    private boolean isLaunch = false;
+
     private GPSInfo gps;
     MapView mapView;
     ViewGroup mapViewContainer;
     MapPoint mapPoint;
+
+    static Activity activity;
+
+    public static void finishThis() {
+        if (activity != null) activity.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        callPermission();
         getGpsData();
 
         gotoprofile = findViewById(R.id.myprofile);
         addkok = findViewById(R.id.addkok);
-        goChat = findViewById(R.id.chating);
+        //goChat = findViewById(R.id.chating);
 
         gotoprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,13 +100,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             }
         });
 
-        goChat.setOnClickListener(new View.OnClickListener() {
+        /*goChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ChatlistActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     //가까이에 있는 콕을 서버에서 부터 받아온다.
@@ -326,6 +336,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         startActivity(intent);
     }
 
+    //맵뷰에서 생겨난 POI를 선택하고 나온 풍선을 선택했을때 호출되는 함수2
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
 
@@ -338,11 +349,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == PERMISSIONS_ACCESS_FINE_LOCATION
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == PERMISSIONS_ACCESS_FINE_LOCATION) {
             isAccessFineLocation = true;
-        } else if (requestCode == PERMISSIONS_ACCESS_COARSE_LOCATION
-                && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        } else if (requestCode == PERMISSIONS_ACCESS_COARSE_LOCATION){
             isAccessCoarseLocation = true;
         }
 
@@ -351,7 +360,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         }
     }
 
-    // 전화번호 권한 요청
+    // 위치권한 요청
     private void callPermission() {
         // Check the SDK version and whether the permission is already granted or not.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M

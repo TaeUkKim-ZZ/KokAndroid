@@ -1,10 +1,16 @@
 package neolabs.kok.activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,12 +54,17 @@ public class EditProfileActivity extends AppCompatActivity {
     String nicknamestring;
     String genderstring;
     String introducestring;
-    String findemail;
     LockClass getsha512 = new LockClass();
     Uri imageUri = null; //초기값을 null로 따로 정의
     ImageView logoView;
 
     String mediaPath;
+
+    static Activity activity;
+
+    public static void finishThis() {
+        if (activity != null) activity.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +72,7 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         setView();
+        setPermission();
 
         logoView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,12 +114,14 @@ public class EditProfileActivity extends AppCompatActivity {
                             case 200:
                                 Data body = response.body();
 
-                                if(imageUri != null) {
-                                    sendProfileImage(body.getId());
-                                }
-
                                 SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = pref.edit();
+
+                                if(imageUri != null) {
+                                    sendProfileImage(body.getId());
+                                    editor.putString("profileImage", body.getProfileimage());
+                                }
+
                                 editor.putString("gender", body.getGender());
                                 editor.putString("nickname", body.getNickname());
                                 editor.putString("introduce", body.getIntroduce());
@@ -121,22 +135,31 @@ public class EditProfileActivity extends AppCompatActivity {
                             case 409:
                                 Toast.makeText(EditProfileActivity.this, "문제가 발생했습니다.", Toast.LENGTH_SHORT).show();
                             default:
-                                Log.e("asdf", response.code() + "");
                                 break;
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Data> call, Throwable t) {
-                        Log.d("checkonthe", "error");
                     }
                 });
             }
         });
     }
 
+    public void setPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        1);
+            }
+        }
+    }
+
     public void sendProfileImage(String userauth) {
-        Log.d("ispost?", mediaPath);
         File file = new File(mediaPath);
 
         HashMap<String, Object> input = new HashMap<>();
